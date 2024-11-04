@@ -1,0 +1,10 @@
+.ps-logo{
+    padding-left: 40px;
+}
+.menu-item a {
+    color: white;
+}
+.login-item {
+    margin-left: 356px; /* Cách trái 100px */
+}
+

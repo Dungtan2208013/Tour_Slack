@@ -1,0 +1,406 @@
+<div id="homepage-1">
+    <div class="ps-home-banner ps-home-banner--1">
+        <img src="img/pexels-fmaderebner-851095.jpg"  alt="">
+        <!-- <div class="ps-container"> 
+             <div class="ps-section__left">
+                <a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home4.jpg" height="425px" alt=""></a>
+            </div>
+            <div class="ps-section__right">
+                <a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home4.jpg" height="193px" width="390" alt=""></a>
+                <a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/pexels-thuan-28728495.jpg" height="193px" width="390" alt=""></a>
+            </div> 
+         </div>  -->
+    </div>
+    <!-- ------------------ -->
+    <div class="ps-site-features">
+        <div class="ps-container3">
+            <div class="ps-block--site-features">
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-rocket"></i></div>
+                    <div class="ps-block__right">
+                        <h4>Lên kế hoạch dễ dàng và nhanh chóng</h4>
+                        <p>Khám phá các điểm đến hàng đầu theo cách bạn thích ở Việt Nam</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-sync"></i></div>
+                    <div class="ps-block__right">
+                        <h4>Đi nhiều hơn, chi ít hơn</h4>
+                        <p>tận hưởng mọi cảm giác</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-credit-card"></i></div>
+                    <div class="ps-block__right">
+                        <h4>Thanh toán an toàn</h4>
+                        <p>Hoàn tiền trong vòng 3 ngày</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-bubbles"></i></div>
+                    <div class="ps-block__right">
+                        <h4>Hỗ trợ 24/7</h4>
+                        <p>Hỗ trợ tận tâm</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-gift"></i></div>
+                    <div class="ps-block__right">
+                        <h4>Dịch vụ quà tặng</h4>
+                        <p>Hỗ trợ dịch vụ quà tặng</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------- -->
+    <div class="container3_1">
+        <div class="container3">
+         <div class="header4">
+          Ưu đãi
+         </div>
+         <div class="subheader4">
+          Khuyến mãi, giảm giá và ưu đãi đặc biệt dành riêng cho bạn
+         </div>
+         <div class="offer-card3">
+          <div class="offer-text3">
+           <div class="offer-title3">
+            Vui là chính, không cần dài
+           </div>
+           <div class="offer-description3">
+            Kết năm với kỳ nghỉ ngắn. Tiết kiệm từ 15% trở lên khi đặt và lưu trú đến hết 7/1/2025.
+           </div>
+           <a class="offer-button3" href="/all-tours">
+            Tìm Ưu Đãi Cuối Năm
+           </a>
+          </div>
+          <img alt="Two people paddling a canoe on a lake with mountains in the background" class="offer-image3" height="100" src="https://storage.googleapis.com/a1aa/image/qgiGgRZ7WkZwJpcw4hT9QimfGNIE2IkA0Ssg2qbYzc2Oac2JA.jpg" width="150"/>
+         </div>
+        </div>
+       </div>
+   <!-- ------------------ -->
+    <!-- <div class="ps-home-ads">
+        <div class="ps-container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/pexels-alwaysontheroad-2977464.jpg" alt=""></a>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/pexels-alwaysontheroad-2973305.jpg" alt=""></a>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/pexels-thuan-28728495.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <br><br><br>
+    <div class="row" style="min-height: 700px !important;" *ngIf="isLoading">
+        <div class="spinner-border text-warning" role="status" style="margin: auto; width: 6em;height: 6em;"></div>
+    </div>
+    <div class="row" *ngIf="!isLoading">
+        <div class="ps-container">
+            <div class="ps-section__header" style="background-color: #e3e3e3; padding-top: 8px;">
+                <h3 style="padding: 8px;">Tour Nổi Bật</h3>
+            </div>
+            <br>
+            <div class="ps-section__content">
+                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+                    <div ngxSlickItem *ngFor="let item of productRated  | paginate: { itemsPerPage: 6, currentPage: 0}" class="slide">
+                        <div class="ps-product">
+                            <div class="ps-product__thumbnail">
+                                <a href="javascript:void(0);">
+                                    <img [src]="item.image" [routerLink]="['/tours-detail/'+item.tourId]" alt="" />
+                                </a>
+                                <div class="ps-product__badge">-{{item.discount}}%</div>
+                                <ul class="ps-product__actions">
+                                    <li><a href="javascript:void(0);" (click)="addCart(item.tourId, item.price*(1 - item.discount/100))" data-toggle="tooltip" data-placement="top" title="Thêm Giỏ Hàng"><i class="icon-bag2"></i></a></li>
+                                    <li><a [routerLink]="['/tours-detail/'+item.tourId]" data-toggle="tooltip" data-placement="top" title="Xem Chi Tiết"><i class="icon-eye"></i></a></li>
+                                    <li><a href="javascript:void(0);" (click)="toggleLike(item.tourId)" data-toggle="tooltip" data-placement="top" title="Yêu Thích"><i class="icon-heart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="ps-product__container">
+                                <a class="ps-product__vendor" href="javascript:void(0);">
+                                    <span> {{item.category.categoryName}}</span>
+                                </a>
+                                <div class="ps-product__content">
+                                    <a class="ps-product__title" [routerLink]="['/tours-detail/'+item.tourId]">{{item.name}}</a>
+                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.tourId)>0">
+                                        <ngb-rating [rate]="getAvgRate(item.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
+                                                title="{{getAvgRate(item.tourId)}} sao">
+                                        </ngb-rating>
+                                        ({{countRate}} đánh giá)
+                                    </div>
+                                    <p class="ps-product__price sale">
+                                        <del *ngIf="item.discount != 0">{{item.price|currency:'VND'}}</del>
+                                        {{item.price*(1 - item.discount/100) | currency:'VND'}}
+                                    </p>
+                                </div>
+                                <div class="ps-product__content hover">
+                                    <a class="ps-product__title" [routerLink]="['/tours-detail/'+item.tourId]">{{item.name}}</a>
+                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.tourId)>0">
+                                        <ngb-rating [rate]="getAvgRate(item.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
+                                                title="{{getAvgRate(item.tourId)}} sao">
+                                        </ngb-rating>
+                                        ({{countRate}} đánh giá)
+                                    </div>
+                                    <p class="ps-product__price sale">
+                                        <del *ngIf="item.discount != 0">{{item.price|currency:'VND'}}</del>
+                                        {{item.price*(1 - item.discount/100) | currency:'VND'}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ngx-slick-carousel>
+            </div>
+        </div>
+    </div>
+<br><br>
+    <!-- <div class="ps-home-ads">
+      <div class="ps-container">
+          <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 " ><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home1.jpg" alt=""></a>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home2.jpg" alt=""></a>
+              </div>
+          </div>
+      </div>
+  </div> -->
+  <div class="container1">
+    <h1>Điểm đến đang thịnh hành</h1>
+    <p>Các lựa chọn phổ biến nhất cho du khách từ Việt Nam</p>
+    <div class="destinations">
+        <div class="destination">
+            <img alt="Skyline of Ho Chi Minh City with tall buildings and a clear sky" height="400" src="https://storage.googleapis.com/a1aa/image/gP2eTmfXZPvT0Ero846J7MG9uOXCqlVcdV27OH1SdR68R8pTA.jpg" width="600"/>
+            <h2>TP. Hồ Chí Minh <span class="flag">🇻🇳</span></h2>
+        </div>
+        <div class="destination">
+            <img alt="View of Vung Tau with boats on the water and a mountain in the background" height="400" src="https://storage.googleapis.com/a1aa/image/HRzoyhbF1rKSPJQMEU3lwseDIE6StwjZMrZ29NjoYLxeR8pTA.jpg" width="600"/>
+            <h2>Vũng Tàu <span class="flag">🇻🇳</span></h2>
+        </div>
+        <div class="destination">
+            <img alt="Beach view in Da Nang with waves and a clear sky" height="400" src="https://storage.googleapis.com/a1aa/image/9y18jJxWBU5XPtWUdBNePfjAvISiiofBoS2EHjwlkBdeHxnOB.jpg" width="600"/>
+            <h2>Đà Nẵng <span class="flag">🇻🇳</span></h2>
+        </div>
+        <div class="destination">
+            <img alt="View of Hoan Kiem Lake in Hanoi with the Turtle Tower in the middle" height="400" src="https://storage.googleapis.com/a1aa/image/1hgjFxFEz2ZfLqfOvPbOfDcRGurgFQzAzXUB6qoiKjAyj4TnA.jpg" width="600"/>
+            
+            <h2>Đà Lạt<span class="flag">🇻🇳</span></h2>
+        </div>
+        <div class="destination">
+            <img alt="View of Da Lat with mountains and a cityscape" height="400" src="https://storage.googleapis.com/a1aa/image/hawxfja84qXINyjEZ9NRC4FFEqqlPE0GKT8qn1f386w7R8pTA.jpg" width="600"/>
+            <h2> Hà Nội<span class="flag">🇻🇳</span></h2>
+        </div>
+    </div>
+</div>
+
+  <!-- ----------- -->
+  <br>
+
+    <div class="row" *ngIf="!isLoading">
+        <div class="ps-container">
+            <div class="ps-section__header" style="background-color: #e3e3e3; padding-top: 8px;">
+                <h3 style="padding: 8px;">SẢN PHẨM BÁN CHẠY NHẤT</h3>
+            </div>
+            <br>
+            <div class="ps-section__content">
+                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+                    <div ngxSlickItem *ngFor="let item of productSeller | paginate: { itemsPerPage: 8, currentPage: 0}" class="slide" >
+                        <div class="ps-product">
+                            <div class="ps-product__thumbnail">
+                                <a href="javascript:void(0);">
+                                    <img [src]="item.image" [routerLink]="['/tours-detail/'+item.tourId]" alt="" />
+                                </a>
+                                <div class="ps-product__badge">-{{item.discount}}%</div>
+                                <ul class="ps-product__actions">
+                                    <li><a href="javascript:void(0);" (click)="addCart(item.tourId, item.price*(1 - item.discount/100))" data-toggle="tooltip" data-placement="top" title="Thêm Giỏ Hàng"><i class="icon-bag2"></i></a></li>
+                                    <li><a [routerLink]="['/tours-detail/'+item.tourId]" data-toggle="tooltip" data-placement="top" title="Xem Chi Tiết"><i class="icon-eye"></i></a></li>
+                                    <li><a href="javascript:void(0);" (click)="toggleLike(item.tourId)" data-toggle="tooltip" data-placement="top" title="Yêu Thích"><i class="icon-heart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="ps-product__container">
+                                <a class="ps-product__vendor" href="javascript:void(0);">
+                                    <span> {{item.category.categoryName}}</span>
+                                </a>
+                                <div class="ps-product__content">
+                                    <a class="ps-product__title" [routerLink]="['/tours-detail/'+item.tourId]">{{item.name}}</a>
+                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.tourId)>0">
+                                        <ngb-rating [rate]="getAvgRate(item.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
+                                                title="{{getAvgRate(item.tourId)}} sao">
+                                        </ngb-rating>
+                                        ({{countRate}} đánh giá)
+                                    </div>
+                                    <p class="ps-product__price sale">
+                                        <del *ngIf="item.discount != 0">{{item.price|currency:'VND'}}</del>
+                                        {{item.price*(1 - item.discount/100) | currency:'VND'}}
+                                    </p>
+                                </div>
+                                <div class="ps-product__content hover">
+                                    <a class="ps-product__title" [routerLink]="['/product-detail/'+item.tourId]">{{item.name}}</a>
+                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.tourId)>0">
+                                        <ngb-rating [rate]="getAvgRate(item.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
+                                                title="{{getAvgRate(item.tourId)}} sao">
+                                        </ngb-rating>
+                                        ({{countRate}} đánh giá)
+                                    </div>
+                                    <p class="ps-product__price sale">
+                                        <del *ngIf="item.discount != 0">{{item.price|currency:'VND'}}</del>
+                                        {{item.price*(1 - item.discount/100) | currency:'VND'}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ngx-slick-carousel>
+            </div>
+        </div>
+    </div>
+
+    <br>  <br>
+    <!-- <div class="ps-home-ads">
+      <div class="ps-container">
+          <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 " ><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home3.jpg" alt=""></a>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home4.jpg" alt=""></a>
+              </div>
+          </div>
+      </div>
+  </div> -->
+  <br>
+    <div class="row" *ngIf="!isLoading">
+        <div class="ps-container">
+            <div class="ps-section__header" style="background-color: #e3e3e3; padding-top: 8px;">
+                <h3 style="padding: 8px;">Tour Nổi Bật</h3>
+            </div>
+            <br>
+            <div class="ps-section__content">
+                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+                    <div ngxSlickItem *ngFor="let item of productLatest | paginate: { itemsPerPage: 8, currentPage: 0}" class="slide" >
+                        <div class="ps-product">
+                            <div class="ps-product__thumbnail">
+                                <a href="javascript:void(0);">
+                                    <img [src]="item.image" [routerLink]="['/tours-detail/'+item.tourId]" alt="" />
+                                </a>
+                                <div class="ps-product__badge">-{{item.discount}}%</div>
+                                <ul class="ps-product__actions">
+                                    <li><a href="javascript:void(0);" (click)="addCart(item.tourId, item.price*(1 - item.discount/100))" data-toggle="tooltip" data-placement="top" title="Thêm Giỏ Hàng"><i class="icon-bag2"></i></a></li>
+                                    <li><a [routerLink]="['/tours-detail/'+item.tourId]" data-toggle="tooltip" data-placement="top" title="Xem Chi Tiết"><i class="icon-eye"></i></a></li>
+                                    <li><a href="javascript:void(0);" (click)="toggleLike(item.tourId)" data-toggle="tooltip" data-placement="top" title="Yêu Thích"><i class="icon-heart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="ps-product__container">
+                                <a class="ps-product__vendor" href="javascript:void(0);">
+                                    <span> {{item.category.categoryName}}</span>
+                                </a>
+                                <div class="ps-product__content">
+                                    <a class="ps-product__title" [routerLink]="['/tours-detail/'+item.tourId]">{{item.name}}</a>
+                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.tourId)>0">
+                                        <ngb-rating [rate]="getAvgRate(item.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
+                                                title="{{getAvgRate(item.tourId)}} sao">
+                                        </ngb-rating>
+                                        ({{countRate}} đánh giá)
+                                    </div>
+                                    <p class="ps-product__price sale">
+                                        <del *ngIf="item.discount != 0">{{item.price|currency:'VND'}}</del>
+                                        {{item.price*(1 - item.discount/100) | currency:'VND'}}
+                                    </p>
+                                </div>
+                                <div class="ps-product__content hover">
+                                    <a class="ps-product__title" [routerLink]="['/tours-detail/'+item.tourId]">{{item.name}}</a>
+                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.tourId)>0">
+                                        <ngb-rating [rate]="getAvgRate(item.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
+                                                title="{{getAvgRate(item.tourId)}} sao">
+                                        </ngb-rating>
+                                        ({{countRate}} đánh giá)
+                                    </div>
+                                    <p class="ps-product__price sale">
+                                        <del *ngIf="item.discount != 0">{{item.price|currency:'VND'}}</del>
+                                        {{item.price*(1 - item.discount/100) | currency:'VND'}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ngx-slick-carousel>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <!-- <div class="ps-home-ads">
+        <div class="ps-container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home5.jpg" alt=""></a>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home5.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="ps-download-app">
+        <div class="ps-container">
+            <div class="ps-block--download-app">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-block__thumbnail"><img src="img/Screenshot 2024-11-02 100709.png" alt=""></div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-block__content">
+                                <h3>Tải xuống ứng dụng SLACK ngay!</h3>
+                                <p>Mua sắm nhanh chóng và dễ dàng hơn với ứng dụng của chúng tôi. Nhận liên kết để tải xuống ứng dụng trên điện thoại của bạn</p>
+                                <form class="ps-form--download-app" action="#" method="post">
+                                    <div class="form-group--nest">
+                                        <input class="form-control" type="Email" placeholder="Địa chỉ Email">
+                                        <button class="ps-btn">Gửi</button>
+                                    </div>
+                                </form>
+                                <p class="download-link"><a href="#"><img src="img/google-play.png" alt=""></a><a href="#"><img src="img/app-store.png" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ps-newsletter">
+    <div class="container">
+        <form class="ps-form--newsletter">
+            <div class="row">
+                <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                    <div class="ps-form__left">
+                        <h3>Bản tin</h3>
+                        <p>Đăng ký để nhận thông tin về tour và phiếu giảm giá</p>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                    <div class="ps-form__right">
+                        <div class="form-group--nest">
+                            <input class="form-control" type="email" placeholder="Địa chỉ Email">
+                            <button class="ps-btn">Gửi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- star -->
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100" style="font-size: 90%;">
+        <span class="half" [style.width.%]="fill">
+            <i class="fa fa-star"></i>
+        </span>
+        <i class="fa fa-star"></i>
+    </span>
+</ng-template>
+
+
+
+
+
+
+
+
