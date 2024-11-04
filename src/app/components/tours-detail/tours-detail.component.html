@@ -23,10 +23,6 @@
                                         <div class="item">
                                             <a href="#">
                                                 <img [src]="tour.image" alt="">
-                                                <!-- <div *ngIf="tour && tour.image">
-                                                    <img [src]="tour.image" alt="Tour Image">
-                                                </div> -->
-                                                
                                             </a>
                                         </div>
 
@@ -36,10 +32,6 @@
                         </div>
                         <div class="ps-product__info">
                             <h1>{{tour.name}}</h1>
-                            <!-- <div *ngIf="tour && tour.name">
-                                <h1>{{ tour.name }}</h1>
-                            </div> -->
-                            
                             <div class="ps-product__desc" *ngIf="getAvgRate(tour.tourId)>0">
                                 <ngb-rating [rate]="getAvgRate(tour.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
                                         title="{{getAvgRate(tour.tourId)}} sao">
@@ -62,8 +54,8 @@
                                 </div>
                             </div>
                             <div class="ps-product__specification">
-                                <p class="categories"><strong> Categories:</strong><a href="#">Consumer Electronics</a>,<a href="#"> Refrigerator</a>,<a href="#">Babies & Moms</a></p>
-                                <p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p>
+                                <p class="categories"><strong> Miền Bắc:</strong><a href="#">Miền Trung:</a><a href="#">Miền Nam</a></p>
+                                <!-- <p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p> -->
                             </div>
                             <div class="ps-product__sharing"><a class="facebook" href="#"><i class="fa fa-facebook"></i></a><a class="twitter" href="#"><i class="fa fa-twitter"></i></a><a class="google" href="#"><i class="fa fa-google-plus"></i></a><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></div>
                         </div>
@@ -142,7 +134,7 @@
                     <p><i class="icon-network"></i> Du lịch toàn quốc</p>
                     <p><i class="icon-3d-rotate"></i> Hoàn trả miễn phí trong 3 ngày nếu đủ điều kiện</p>
                     <p><i class="icon-receipt"></i> Nhà cung cấp đưa ra hóa đơn cho sản phẩm này</p>
-                    <p><i class="icon-credit-card"></i> Thanh toán trực tuyến qua </p>
+                    <p><i class="icon-credit-card"></i> Thanh toán trực tuyến qua Paypal</p>
                 </aside>
                 <aside class="widget widget_sell-on-site">
                     <p><i class="icon-store"></i> Bán trên Slack?<a href="#"> Đăng ký ngay !</a></p>
