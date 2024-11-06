@@ -1,16 +1,16 @@
 <div class="ps-breadcrumb">
     <div class="ps-container">
         <ul class="breadcrumb">
-            <li><a [routerLink]="['/home']">Trang chủ </a></li>
-            <li><a [routerLink]="['/all-tours']" > Cửa hàng</a></li>
-            <li>Chi tiết sản phẩm</li>
+            <li><a [routerLink]="['/home']">Trang Chủ</a></li>
+            <li><a [routerLink]="['/all-tours']" >Tour</a></li>
+            <li> Chi tiết Tour</li>
         </ul>
     </div>
 </div>
-<div class="row" style="min-height: 700px !important;" *ngIf="isLoading">
+<!-- <div class="row" style="min-height: 700px !important;" *ngIf="isLoading">
     <div class="spinner-border text-success" role="status" style="margin: auto; width: 6em;height: 6em;"></div>
-</div>
-<div class="ps-page--product" *ngIf="!isLoading">
+</div> -->
+<!-- <div class="ps-page--product" *ngIf="!isLoading">
     <div class="ps-container">
         <div class="ps-page__container">
             <div class="ps-page__left">
@@ -55,7 +55,7 @@
                             </div>
                             <div class="ps-product__specification">
                                 <p class="categories"><strong> Miền Bắc:</strong><a href="#">Miền Trung:</a><a href="#">Miền Nam</a></p>
-                                <!-- <p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p> -->
+                                <p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p>
                             </div>
                             <div class="ps-product__sharing"><a class="facebook" href="#"><i class="fa fa-facebook"></i></a><a class="twitter" href="#"><i class="fa fa-twitter"></i></a><a class="google" href="#"><i class="fa fa-google-plus"></i></a><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></div>
                         </div>
@@ -201,8 +201,91 @@
             </div>
         </div>
     </div>
+</div> -->
+<div class="container51">
+<div class="container5"  *ngIf="getAvgRate(tour.tourId)>0">
+    <!-- <ngb-rating [rate]="getAvgRate(tour.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
+                                        title="{{getAvgRate(tour.tourId)}} sao">
+                                </ngb-rating>
+                                ({{countRate}} đánh giá) -->
+    <h1 href="javascript:void(0);">{{tour.name}} tour</h1>
+    <div class="header5">
+        
+     <div class="rating">
+      <i class="fas fa-star" href="javascript:void(0);"></i>4.7
+     </div>
+     <a class="reviews" href="javascript:void(0);">(28k+ reviews)</a>
+     <span class="location" href="javascript:void(0);">· 1M+ booked ·</span>
+     <a class="wishlist5" href="#"><i class="far fa-heart"></i> Save to wishlist</a>
+    </div>
+    <img alt="" class="main-image" [src]="tour.image" height="400" width="800"/>
+    <div class="gallery5">
+     <div class="gallery-item">
+      <img alt="" [src]="tour.image"  height="200" width="200"/>
+     </div>
+     <div class="gallery-item">
+      <img alt="" [src]="tour.image" height="200" width="200"/>
+     </div>
+     <div class="gallery-item">
+      <img alt="" [src]="tour.image" height="200" width="200"/>
+      <button class="gallery-button">Gallery</button>
+     </div>
+    </div>
+    <div class="info">
+     <p>• Tickets are time-specific; the date and time cannot be changed. Please enter the venue within the time specified on your ticket, as late arrivals may be denied admission.</p>
+     <p>• For your safety, the rooftop may be closed in the event of weather conditions.</p>
+     <a class="see-more" href="#">See more <i class="fas fa-chevron-right"></i></a>
+    </div>
+ </div>
 </div>
-<div class="ps-newsletter">
+ <!-- Modal -->
+ <div class="modal" id="galleryModal">
+     <button class="close-btn" onclick="closeGallery()">×</button>
+     <div class="modal-content">
+         <img src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" alt="Gallery Image 1">
+         <img src="https://storage.googleapis.com/a1aa/image/GFfnNnWIMtwRASk3K1DN0a0IfvzRZaJsMN6sfFaOXMi1tObnA.jpg" alt="Gallery Image 2">
+         <img src="https://storage.googleapis.com/a1aa/image/HCTUSsREhtIlIlaMfwie4k9kxd5AXLtg6kPEWo2c6XZ8WntTA.jpg" alt="Gallery Image 3">
+     </div>
+ </div>
+ <!-- --------------------next-body-------- -->
+ <div class="container6">
+    <div class="container61">
+        <div class="content6">
+            <p>{{tour.description}}</p>
+            <p>Các cặp đôi đặc biệt thích địa điểm này — họ cho điểm <strong>9,8</strong> khi đánh giá chuyến đi hai người.</p>
+            <p>Các khoảng cách nêu trong mô tả chỗ nghỉ được tính toán bằng © OpenStreetMap</p>
+            <div class="facilities6">
+                <h3>Các tiện nghi được ưa chuộng nhất</h3>
+                <ul>
+                    <li><i class="fas fa-shuttle-van"></i> Xe đưa đón sân bay</li>
+                    <li><i class="fas fa-smoking-ban"></i> Phòng không hút thuốc</li>
+                    <li><i class="fas fa-concierge-bell"></i> Dịch vụ phòng</li>
+                    <li><i class="fas fa-parking"></i> Chỗ đỗ xe miễn phí</li>
+                    <li><i class="fas fa-wheelchair"></i> Tiện nghi cho khách khuyết tật</li>
+                    <li><i class="fas fa-wifi"></i> WiFi miễn phí</li>
+                    <li><i class="fas fa-snowflake"></i> Điều hòa nhiệt độ</li>
+                    <li><i class="fas fa-tshirt"></i> Giặt ủi</li>
+                    <li><i class="fas fa-users"></i> Phòng gia đình</li>
+                    <li><i class="fas fa-concierge-bell"></i> Lễ tân 24 giờ</li>
+                </ul>
+            </div>
+        </div>
+        <div class="sidebar6">
+            <h2>Điểm nổi bật của chỗ nghỉ</h2>
+            <p class="highlight6">Hoàn hảo cho kỳ nghỉ 2 đêm!</p>
+            <p><i class="fas fa-map-marker-alt"></i> Nằm ngay trung tâm TP. Hồ Chí Minh, khách sạn này có điểm vị trí tuyệt vời 9,7</p>
+            <p><i class="fas fa-parking"></i> Có bãi đậu xe riêng miễn phí ở khách sạn này</p>
+            <div class="price-section">
+                <div class="price"><del *ngIf="tour.discount != 0">{{tour.price|currency:'VND'}}</del>
+                    {{tour.price*(1 - tour.discount/100) | currency:'VND'}}</div>
+                <!-- <button class="select-options">Select options</button> -->
+               </div>
+            <a href="#" class="button6">Đặt ngay</a>
+        </div>
+    </div>
+</div>
+  <!-- --------------------end-body-------- -->
+   <div class="ps-newsletter">
     <div class="container">
         <form class="ps-form--newsletter">
             <div class="row">
@@ -224,13 +307,12 @@
         </form>
     </div>
 </div>
-
 <!-- star -->
-<ng-template #t let-fill="fill">
+<!-- <ng-template #t let-fill="fill">
     <span class="star" [class.full]="fill === 100" style="font-size: 90%;">
         <span class="half" [style.width.%]="fill">
             <i class="fa fa-star"></i>
         </span>
         <i class="fa fa-star"></i>
     </span>
-</ng-template>
+</ng-template> -->

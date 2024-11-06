@@ -109,7 +109,6 @@ export class AllToursComponent implements OnInit {
     }
     this.cartService.getCart(email).subscribe(data => {
       this.cart = data as Cart;
-      console.log("CART:",this.cart);   //them
       this.cartDetail = new CartDetail(0, 1, price, new Tours (tourId), new Cart(this.cart.cartId));
       this.cartService.postDetail(this.cartDetail).subscribe(data => {
         this.toastr.success('Thêm vào giỏ hàng thành công!', 'Hệ thống!');

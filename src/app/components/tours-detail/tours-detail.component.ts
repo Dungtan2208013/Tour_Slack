@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -15,6 +15,7 @@ import { ToursService } from 'src/app/services/tours.service';
 import { RateService } from 'src/app/services/rate.service';
 import { SessionService } from 'src/app/services/session.service';
 import { RouterModule } from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-tours-detail',
@@ -23,6 +24,16 @@ import { RouterModule } from '@angular/router';
 })
 export class ToursDetailComponent implements OnInit {
 
+  @ViewChild('galleryModal') galleryModal!: ElementRef;
+
+  // Phương thức để mở gallery
+  openGallery(): void {
+    this.galleryModal.nativeElement.style.display = 'flex';
+  }
+  // Phương thức để đóng gallery
+  closeGallery(): void {
+    this.galleryModal.nativeElement.style.display = 'none';
+  }
   tour!: Tours;
   tours!: Tours[];
   id!: number;
@@ -43,7 +54,7 @@ export class ToursDetailComponent implements OnInit {
   countRate!:number;
 
   itemsComment:number = 3;
- 
+  
   
   constructor(
     private ToursService: ToursService,
@@ -60,7 +71,6 @@ export class ToursDetailComponent implements OnInit {
       this.ngOnInit();
     })
   }
-
   slideConfig = {"slidesToShow": 7, "slidesToScroll": 2, "autoplay": true};
 
   ngOnInit(): void {

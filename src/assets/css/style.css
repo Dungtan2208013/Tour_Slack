@@ -5913,7 +5913,8 @@ textarea.form-control {
 
 .ps-collection img {
   width: 100%;
-  height: 30%;
+  /* height: 30%; */
+  height: 100%;
 }
 
 @media (max-width: 767px) {
@@ -8233,7 +8234,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .ps-product {
   position: relative;
-  padding: 10px 10px 0;
+  padding: 10px 10px 10px;
   border: 1px solid transparent;
   border-bottom: none;
 }

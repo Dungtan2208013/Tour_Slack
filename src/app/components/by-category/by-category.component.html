@@ -37,24 +37,20 @@
                               </div>
                               </li>
                               <li>
-                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;SAMSUNG (1)</span><br>
-                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;APPLE (13)</span><br>
-                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;SONY (10)</span><br>
-                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;TOSHIBA (9)</span><br>
-                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;PANASONIC (9)</span><br>
-                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;LG (3)</span><br>
-                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;OPPO (2)</span>
+                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;Miền Bắc</span><br>
+                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;Miền Trung </span><br>
+                                <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;Miền Nam</span><br>
                               </li>
                           </ul>
                       </aside>
                       <aside class="widget widget--vendor widget--open-time">
                         <h4 class="widget-title"><i class="icon-clock3"></i> GIỜ CỬA HÀNG</h4>
                         <ul>
-                            <li><strong>Thứ 2:</strong><span>8:00 am - 6:00 pm</span></li>
+                            <!-- <li><strong>Thứ 2:</strong><span>8:00 am - 6:00 pm</span></li>
                             <li><strong>Thứ 3:</strong><span>8:00 am - 6:00 pm</span></li>
                             <li><strong>Thứ 4:</strong><span>8:00 am - 6:00 pm</span></li>
                             <li><strong>Thứ 5:</strong><span>8:00 am - 6:00 pm</span></li>
-                            <li><strong>Thứ 6:</strong><span>8:00 am - 6:00 pm</span></li>
+                            <li><strong>Thứ 6:</strong><span>8:00 am - 6:00 pm</span></li> -->
                         </ul>
                     </aside>
                   </figure>
@@ -65,7 +61,7 @@
             <div class="ps-layout__right">
                 <div class="ps-shopping ps-tab-root">
                   <div>
-                    <img src="img/slider/home-3/home-banner/17.png" alt="" />
+                    <img src="img/banner12.jpg" alt="" />
                   </div>
 
                     <div class="ps-shopping__header">
@@ -88,13 +84,13 @@
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 " *ngFor="let item of tours | orderBy : key : reverse | paginate: { itemsPerPage: 12, currentPage: page}">
                                         <div class="ps-product" *ngIf="item.quantity>0">
                                             <div class="ps-product__thumbnail">
-                                                <a [routerLink]="['/product-detail/'+item.productId]">
+                                                <a [routerLink]="['/product-detail/'+item.tourId]">
                                                     <img [src]="item.image" alt="" />
                                                 </a>
                                                 <ul class="ps-product__actions">
-                                                    <li><a href="javascript:void(0);" (click)="addCart(item.productId, item.price*(1 - item.discount/100))" data-toggle="tooltip" data-placement="top" title="Thêm Giỏ Hàng"><i class="icon-bag2"></i></a></li>
-                                                    <li><a [routerLink]="['/product-detail/'+item.productId]" data-toggle="tooltip" data-placement="top" title="Xem Chi Tiết"><i class="icon-eye"></i></a></li>
-                                                    <li><a href="javascript:void(0);" (click)="toggleLike(item.productId)" data-toggle="tooltip" data-placement="top" title="Yêu Thích"><i class="icon-heart"></i></a></li>
+                                                    <li><a href="javascript:void(0);" (click)="addCart(item.tourId, item.price*(1 - item.discount/100))" data-toggle="tooltip" data-placement="top" title="Thêm Giỏ Hàng"><i class="icon-bag2"></i></a></li>
+                                                    <li><a [routerLink]="['/tours-detail/'+item.tourId]" data-toggle="tooltip" data-placement="top" title="Xem Chi Tiết"><i class="icon-eye"></i></a></li>
+                                                    <li><a href="javascript:void(0);" (click)="toggleLike(item.tourId)" data-toggle="tooltip" data-placement="top" title="Yêu Thích"><i class="icon-heart"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="ps-product__container">
@@ -102,10 +98,10 @@
                                                     <span> {{item.category.categoryName}}</span>
                                                 </a>
                                                 <div class="ps-product__content">
-                                                    <a class="ps-product__title" [routerLink]="['/product-detail/'+item.productId]">{{item.name}}</a>
-                                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.productId)>0">
-                                                        <ngb-rating [rate]="getAvgRate(item.productId)" [starTemplate]="t" [readonly]="true" [max]="5"
-                                                                title="{{getAvgRate(item.productId)}} sao">
+                                                    <a class="ps-product__title" [routerLink]="['/tours_detail/'+item.tourId]">{{item.name}}</a>
+                                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.tourId)>0">
+                                                        <ngb-rating [rate]="getAvgRate(item.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
+                                                                title="{{getAvgRate(item.tourId)}} sao">
                                                         </ngb-rating>
                                                         ({{countRate}} đánh giá)
                                                     </div>
@@ -115,10 +111,10 @@
                                                     </p>
                                                 </div>
                                                 <div class="ps-product__content hover">
-                                                    <a class="ps-product__title" [routerLink]="['/product-detail/'+item.productId]">{{item.name}}</a>
-                                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.productId)>0">
-                                                        <ngb-rating [rate]="getAvgRate(item.productId)" [starTemplate]="t" [readonly]="true" [max]="5"
-                                                                title="{{getAvgRate(item.productId)}} sao">
+                                                    <a class="ps-product__title" [routerLink]="['/tours-detail/'+item.tourId]">{{item.name}}</a>
+                                                    <div class="ps-product__desc" *ngIf="getAvgRate(item.tourId)>0">
+                                                        <ngb-rating [rate]="getAvgRate(item.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
+                                                                title="{{getAvgRate(item.tourId)}} sao">
                                                         </ngb-rating>
                                                         ({{countRate}} đánh giá)
                                                     </div>

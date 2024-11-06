@@ -32,7 +32,7 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { AuthGuard } from './guard/auth.guard';
-
+// import { Location } from './components/location/location.component' ;
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
@@ -73,6 +73,7 @@ const routes: Routes = [
     FavoriteComponent,
     ContactComponent,
     AboutComponent,
+    // LocationComponent,
   ],
   imports: [
     BrowserModule,

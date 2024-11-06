@@ -168,7 +168,7 @@ export class ByCategoryComponent implements OnInit {
         }
   }
 
-  addCart(productId: number, price: number) {
+  addCart(tourId: number, price: number) {
     let email = this.sessionService.getUser();
     if (email == null) {
       this.router.navigate(['/sign-form']);
@@ -177,7 +177,7 @@ export class ByCategoryComponent implements OnInit {
     }
     this.cartService.getCart(email).subscribe(data => {
       this.cart = data as Cart;
-      this.cartDetail = new CartDetail(0, 1, price, new Tours(productId), new Cart(this.cart.cartId));
+      this.cartDetail = new CartDetail(0, 1, price, new Tours(tourId), new Cart(this.cart.cartId));
       this.cartService.postDetail(this.cartDetail).subscribe(data => {
         this.toastr.success('Thêm vào giỏ hàng thành công!', 'Hệ thống!');
         this.cartService.getAllDetail(this.cart.cartId).subscribe(data => {
