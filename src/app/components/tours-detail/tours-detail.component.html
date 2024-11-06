@@ -202,13 +202,37 @@
         </div>
     </div>
 </div> -->
-<div class="container51">
-<div class="container5"  *ngIf="getAvgRate(tour.tourId)>0">
+<!-- ------------------ -->
+ <div class="container5-4">
+<div class="container4">
+    <div class="sidebar4">
+     <h2>
+     </h2>
+     <label for="destination">
+      Ngày nhận Phòng
+     </label>
+     <input id="destination" placeholder="Chủ Nhật, ngày 8 tháng 11 năm..." type="text"/>
+     <label for="checkin">
+      Ngày trả phòng
+     </label>
+     <input id="checkin" placeholder="Chủ Nhật, ngày 10 tháng 11 năm...." type="text"/>
+     <label for="checkout">
+      Số người đi
+     </label>
+     <input id="checkout" placeholder="2 người - 3 người" type="text"/>
+     <button>
+      Tìm
+     </button>
+    </div>
+</div>
+ <!-- --------------------- -->
+<div class="container5" >
+    <!-- *ngIf="getAvgRate(tour.tourId)>0 -->
     <!-- <ngb-rating [rate]="getAvgRate(tour.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
                                         title="{{getAvgRate(tour.tourId)}} sao">
                                 </ngb-rating>
                                 ({{countRate}} đánh giá) -->
-    <h1 href="javascript:void(0);">{{tour.name}} tour</h1>
+    <h1 href="javascript:void(0);">{{tour.name}}</h1>
     <div class="header5">
         
      <div class="rating">
@@ -218,35 +242,31 @@
      <span class="location" href="javascript:void(0);">· 1M+ booked ·</span>
      <a class="wishlist5" href="#"><i class="far fa-heart"></i> Save to wishlist</a>
     </div>
-    <img alt="" class="main-image" [src]="tour.image" height="400" width="800"/>
+    <img alt="" class="main-image" src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg"height="50%" width="68% "/>
     <div class="gallery5">
      <div class="gallery-item">
-      <img alt="" [src]="tour.image"  height="200" width="200"/>
+      <img alt="" src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg"  height="40%" width="60%"/>
+      <!-- [src]="tour.image"  -->
      </div>
      <div class="gallery-item">
-      <img alt="" [src]="tour.image" height="200" width="200"/>
+      <img alt="" src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" height="40%" width="60%"/>
      </div>
      <div class="gallery-item">
-      <img alt="" [src]="tour.image" height="200" width="200"/>
+      <img alt="" src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" height="40%" width="60%"/>
       <button class="gallery-button">Gallery</button>
      </div>
     </div>
-    <div class="info">
-     <p>• Tickets are time-specific; the date and time cannot be changed. Please enter the venue within the time specified on your ticket, as late arrivals may be denied admission.</p>
-     <p>• For your safety, the rooftop may be closed in the event of weather conditions.</p>
-     <a class="see-more" href="#">See more <i class="fas fa-chevron-right"></i></a>
-    </div>
  </div>
-</div>
  <!-- Modal -->
  <div class="modal" id="galleryModal">
      <button class="close-btn" onclick="closeGallery()">×</button>
      <div class="modal-content">
          <img src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" alt="Gallery Image 1">
-         <img src="https://storage.googleapis.com/a1aa/image/GFfnNnWIMtwRASk3K1DN0a0IfvzRZaJsMN6sfFaOXMi1tObnA.jpg" alt="Gallery Image 2">
-         <img src="https://storage.googleapis.com/a1aa/image/HCTUSsREhtIlIlaMfwie4k9kxd5AXLtg6kPEWo2c6XZ8WntTA.jpg" alt="Gallery Image 3">
+         <img src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" alt="Gallery Image 2">
+         <img src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" alt="Gallery Image 3">
      </div>
  </div>
+</div>
  <!-- --------------------next-body-------- -->
  <div class="container6">
     <div class="container61">
