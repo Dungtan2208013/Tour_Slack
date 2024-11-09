@@ -29,20 +29,16 @@ export class AllToursComponent implements OnInit {
   favorite!: Favorites;
   favorites!: Favorites[];
   categories!: Category[];
-
   cart!: Cart;
   cartDetail!: CartDetail;
   cartDetails!: CartDetail[];
-
   page: number = 1;
-
   key: string = '';
   keyF: string = '';
   reverse: boolean = true;
 
   rates!: Rate[];
   countRate!: number;
-
 
   constructor(
     private toursService: ToursService,
@@ -66,6 +62,7 @@ export class AllToursComponent implements OnInit {
     this.getAllRate();
     this.getCategories();
   }
+  
 
   getAllRate() {
     this.rateService.getAll().subscribe(data => {
@@ -89,11 +86,14 @@ export class AllToursComponent implements OnInit {
     this.toursService.getAll().subscribe(data => {
       this.isLoading = false;
       this.tours = data as Tours[];
+      
     }, error => {
       this.toastr.error('Lỗi server!', 'Hệ thống');
     })
   }
 
+  // -----
+  // ------
   getCategories() {
     this.categoryService.getAll().subscribe(data => {
       this.categories = data as Category[];

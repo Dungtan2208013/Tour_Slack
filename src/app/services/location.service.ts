@@ -13,12 +13,8 @@ export class LocationService {
   getAll() {
     return this.httpClient.get(this.url);
   }
-
-//   getAllBestSeller() {
-//     return this.httpClient.get(this.url+'/bestseller');
-//   }
-
-//   getOne(id: number) {
-//     return this.httpClient.get(this.url + '/' + id);
-//   }
+  getOne(id: number) {
+    return this.httpClient.get(this.url + '/' + id);
+  }
 }
+

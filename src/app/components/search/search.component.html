@@ -2,17 +2,14 @@
     <div class="ps-container">
         <ul class="breadcrumb">
             <li><a [routerLink]="['/home']">Trang chủ</a></li>
-            <li>Cửa hàng</li>
-            <li>Sản phẩm có từ khóa <b>"{{keyword}}"</b></li>
+            <li>Tour</li>
+            <li>Tour có từ khóa <b>"{{keyword}}"</b></li>
         </ul>
     </div>
 </div>
 <div class="row" style="min-height: 700px !important;" *ngIf="isLoading">
     <div class="spinner-border text-warning" role="status" style="margin: auto; width: 6em;height: 6em;"></div>
 </div>
-<!-- <div class="row" style="min-height: 700px !important;" *ngIf="products.length == 0">
-    <h1 style="margin: auto; color: #fcb800;">Không tìm thấy sản phẩm có từ khoá <b>{{keyword}}</b></h1>
-</div> -->
 <div class="row mt-5 mb-5" style="min-height: 700px !important;" *ngIf="tours.length == 0">
     <div class="col-8 offset-2 text-center">
         <h1 style="margin: auto; color: #fcb800;">Không tìm thấy sản phẩm có từ khoá "<b>{{keyword}}</b>"</h1>

@@ -14,13 +14,17 @@ import { ToursService } from 'src/app/services/tours.service';
 import { RateService } from 'src/app/services/rate.service';
 import { SessionService } from 'src/app/services/session.service';
 // import { NavigationEnd, Router } from '@angular/router';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-
+  
+  
   productSeller!:Tours[];
   productLatest!:Tours[];
   productRated!:Tours[];

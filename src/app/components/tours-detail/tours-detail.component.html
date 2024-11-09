@@ -232,7 +232,7 @@
                                         title="{{getAvgRate(tour.tourId)}} sao">
                                 </ngb-rating>
                                 ({{countRate}} đánh giá) -->
-    <h1 href="javascript:void(0);">{{tour.name}}</h1>
+    <h1 href="javascript:void(0);">{{tour.name}} </h1>
     <div class="header5">
         
      <div class="rating">
@@ -242,17 +242,16 @@
      <span class="location" href="javascript:void(0);">· 1M+ booked ·</span>
      <a class="wishlist5" href="#"><i class="far fa-heart"></i> Save to wishlist</a>
     </div>
-    <img alt="" class="main-image" src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg"height="50%" width="68% "/>
+    <img alt="" class="main-image"  [src]="tour.image" height="400px" width="62% "/>
     <div class="gallery5">
      <div class="gallery-item">
-      <img alt="" src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg"  height="40%" width="60%"/>
-      <!-- [src]="tour.image"  -->
+      <img alt=""  [src]="tour.image" height="267px" width="60%"/>
      </div>
      <div class="gallery-item">
-      <img alt="" src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" height="40%" width="60%"/>
+      <img alt="" [src]="tour.image" height="267px" width="60%"/>
      </div>
      <div class="gallery-item">
-      <img alt="" src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" height="40%" width="60%"/>
+      <img alt="" [src]="tour.image" height="267px" width="60%"/>
       <button class="gallery-button">Gallery</button>
      </div>
     </div>
