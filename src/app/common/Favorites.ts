@@ -1,14 +1,14 @@
 import { Customer } from "./Customer";
-import { Tours } from "./Tours";
+import { Tour } from "./Tour";
 
 export class Favorites {
     'favoriteId': number;
     'user': Customer;
-    'tours': Tours;
+    'tour': Tour;
 
-    constructor(id: number, user: Customer, tours: Tours) {
+    constructor(id: number, user: Customer, tour: Tour) {
         this.favoriteId = id;
-        this.tours = tours;
+        this.tour = tour;
         this.user = user;
     }
 }

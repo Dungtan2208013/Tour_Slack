@@ -110,8 +110,8 @@
                                                 <tbody>
                                                     <tr *ngFor="let item of cartDetails, index as i">
                                                         <td>
-                                                            <a href="javascript:void(0);"> {{item.tours.name}} × {{item.quantity}}</a>
-                                                            <p>Thể loại:<strong> {{item.tours.category.categoryName}}</strong></p>
+                                                            <a href="javascript:void(0);"> {{item.tour.name}} × {{item.quantity}}</a>
+                                                            <p>Thể loại:<strong> {{item.tour.category.categoryName}}</strong></p>
                                                         </td>
                                                         <td>{{item.price | currency:'VND'}}</td>
                                                     </tr>

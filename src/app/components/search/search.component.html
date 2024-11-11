@@ -10,12 +10,12 @@
 <div class="row" style="min-height: 700px !important;" *ngIf="isLoading">
     <div class="spinner-border text-warning" role="status" style="margin: auto; width: 6em;height: 6em;"></div>
 </div>
-<div class="row mt-5 mb-5" style="min-height: 700px !important;" *ngIf="tours.length == 0">
+<div class="row mt-5 mb-5" style="min-height: 700px !important;" *ngIf="tour.length == 0">
     <div class="col-8 offset-2 text-center">
-        <h1 style="margin: auto; color: #fcb800;">Không tìm thấy sản phẩm có từ khoá "<b>{{keyword}}</b>"</h1>
+        <h1 style="margin: auto; color: #003b95;">Không tìm thấy sản phẩm có từ khoá "<b>{{keyword}}</b>"</h1>
     </div>
 </div>
-<div class="ps-page--shop" id="shop-sidebar" *ngIf="!isLoading && tours.length > 0">
+<div class="ps-page--shop" id="shop-sidebar" *ngIf="!isLoading && tour.length > 0">
     <div class="container">
         <div class="ps-layout--shop">
             <div class="ps-layout__left">
@@ -33,7 +33,7 @@
                 <div class="ps-shopping ps-tab-root">
                     <div class="ps-shopping__header">
                         <div class="product-page-number">
-                            <p>Hiển thị <strong>{{(page-1)*12+1}}–{{((page-1)*12+12)>tours.length?tours.length:(page-1)*12+12}}</strong> trong số <strong>{{tours.length}}</strong> sản phẩm</p>
+                            <p>Hiển thị <strong>{{(page-1)*12+1}}–{{((page-1)*12+12)>tour.length?tour.length:(page-1)*12+12}}</strong> trong số <strong>{{tour.length}}</strong> sản phẩm</p>
                         </div>
                         <div class="ps-shopping">
                             <select class="product-short-select custom-select ml-auto" style="font-size: 15px;" [(ngModel)]="keyF" (change)="sort(keyF)">
@@ -48,7 +48,7 @@
                         <div class="ps-tab active" id="tab-1">
                             <div class="ps-shopping-product">
                                 <div class="row">
-                                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 " *ngFor="let item of tours | orderBy : key : reverse | paginate: { itemsPerPage: 12, currentPage: page}">
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 " *ngFor="let item of tour | orderBy : key : reverse | paginate: { itemsPerPage: 12, currentPage: page}">
                                         <div class="ps-product" *ngIf="item.quantity>0">
                                             <div class="ps-product__thumbnail">
                                                 <a [routerLink]="['/tours-detail/'+item.toursId]">

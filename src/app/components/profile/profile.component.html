@@ -64,7 +64,7 @@
                                                 <td>{{item.phone}}</td>
                                                 <td style="width: 17%;">{{item.status==0?'Chờ xác nhận':(item.status==1?'Đã xác nhận':(item.status==2)?'Đã thanh toán':'Đã huỷ')}}</td>
                                                 <td style="width: 5%;">
-                                                    <app-book-details [id]="item.bookId"></app-book-details>
+                                                    <app-book-detail [id]="item.bookId"></app-book-detail>
                                                     <a [title]="item.status==0?'Huỷ đơn':'Không thể huỷ đơn này'"
                                                         (click)="cancel(item.status==0?item.bookId:-1)"
                                                         [style]="item.status==0?'cursor: pointer':'cursor: not-allowed'"

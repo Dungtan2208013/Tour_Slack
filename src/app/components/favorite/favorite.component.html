@@ -25,19 +25,17 @@
                                 <th>Sản phẩm</th>
                                 <th>Tên</th>
                                 <th>Giá</th>
-                                <th>Trạng thái</th>
-                                <th>Thêm giỏ hàng</th>
                                 <th>Hành động</th>
                             </tr>
-                        </thead>
+                        </thead> 
                         <tbody>
-                            <tr *ngFor="let item of favorites | paginate: { itemsPerPage: 5, currentPage: page}, index as i">
+                            <tr *ngFor="let item of favorites | paginate: { itemsPerPage: 3, currentPage: page}, index as i">
                                 <td>{{i+1}}</td>
-                                <td style="text-align: center;" data-label="Product">
+                                <td style="text-align: center;" data-label="tour">
                                     <div class="ps-product--cart">
                                         <div class="ps-product__thumbnail">
-                                            <a [routerLink]="['/tours-detail/'+item.tours.tourId]">
-                                                <img [src]="item.tours.image" alt="" />
+                                            <a [routerLink]="['/tours-detail/'+ item.tour.tourId]">
+                                                <img [src]="item.tour.image" alt="" />
                                             </a>
                                         </div>
                                     </div>
@@ -45,22 +43,23 @@
                                 <td style="text-align: center;" data-label="Product">
                                     <div class="ps-product--cart">
                                         <div class="ps-product__content">
-                                            <a [routerLink]="['/tours-detail/'+item.tours.tourId]">{{item.tours.name}}</a>
-                                            <p>Thể loại:<strong> {{item.tours.category.categoryName}}</strong></p>
+                                            <a
+                                                [routerLink]="['/tours-detail/'+item.tour.tourId]">{{item.tour.name}}</a>
+                                            <p>Thể loại:<strong> {{item.tour.category.categoryName}}</strong></p>
                                         </div>
                                     </div>
                                 </td>
                                 <td style="text-align: center;" class="price" data-label="Price">
-                                    {{item.tours.price*(1 - item.tours.discount/100) | currency:'VND'}}
+                                    {{item.tour.price*(1 - item.tour.discount/100) | currency:'VND'}}
                                 </td>
-                                <td style="text-align: center;" data-label="Status">
-                                    <span class="ps-tag ps-tag--in-stock">{{item.tours.quantity>0?'Còn hàng': 'Hết hàng'}}</span>
-                                </td>
-                                <td style="text-align: center;" data-label="action">
-                                    <button class="ps-btn" (click)="addCart(item.tours.tourId, item.tours.price*(1 - item.tours.discount/100))" [disabled]="item.tours.quantity<0">Thêm Giỏ Hàng</button>
-                                </td>
+                                <!-- <td style="text-align: center;" data-label="action">
+                                    <button class="ps-btn" (click)="addCart(item.tours.tourId, item.tours.price*(1 - item.tours.discount/100))" [disabled]="item.tours.quantity<0">Xem chi tiết Tour</button>
+                                </td> -->
+                                    <!-- [queryParams]="{ price: item.tours.price * (1 - item.tours.discount / 100) }"
+                                    [disabled]="item.tours.quantity < 0" -->
                                 <td style="text-align: center;" data-label="Remove">
-                                    <a href="javascript:void(0);" (click)="delete(item.favoriteId, item.tours.name)">
+                                    <a class="ps-btn" [routerLink]="['/tours-detail', item.tour.tourId] "><i class="icon-eye"></i></a>
+                                    <a href="javascript:void(0);" (click)="delete(item.favoriteId, item.tour.name)">
                                         <i class="icon-cross"></i>
                                     </a>
                                 </td>
@@ -71,10 +70,7 @@
                     <div class="row" style="padding-top: 50px">
                         <div class="col-lg-12">
                             <ul>
-                                <pagination-controls
-                                    (pageChange)="page = $event"
-                                    previousLabel=""
-                                    nextLabel=""
+                                <pagination-controls (pageChange)="page = $event" previousLabel="" nextLabel=""
                                     class="text-center my-page">
                                 </pagination-controls>
                             </ul>

@@ -1,6 +1,8 @@
 <div id="homepage-1">
     <div class="ps-home-banner ps-home-banner--1">
-        <img src="img/pexels-fmaderebner-851095.jpg"  alt="">
+        <img src="img/pexels-fmaderebner-851095.jpg" alt="">
+        <!-- ----------- -->
+        <!-- ----------- -->
     </div>
     <div class="ps-site-features">
         <div class="ps-container3">
@@ -72,24 +74,6 @@
         </div>
     </div>
     <!-- ------------------ -->
-    <div class="ps-home-ads">
-        <div class="ps-container">
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
-                        href="javascript:void(0);"><img src="img/collection/home-1/pexels-alwaysontheroad-2977464.jpg"
-                            alt=""></a>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
-                        href="javascript:void(0);"><img src="img/collection/home-1/pexels-alwaysontheroad-2973305.jpg"
-                            alt=""></a>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
-                        href="javascript:void(0);"><img src="img/collection/home-1/pexels-thuan-28728495.jpg"
-                            alt=""></a>
-                </div>
-            </div>
-        </div>
-    </div>
     <br><br><br>
     <div class="row" style="min-height: 700px !important;" *ngIf="isLoading">
         <div class="spinner-border text-warning" role="status" style="margin: auto; width: 6em;height: 6em;"></div>
@@ -153,30 +137,48 @@
         </div>
     </div> -->
     <br><br>
-    <div class="container1">
+    <div class="carousel-container">
         <h1>Điểm đến đang thịnh hành</h1>
         <p>Các lựa chọn phổ biến nhất cho du khách từ Việt Nam</p>
-        <div class="destinations">
-            <div class="destination">
-                <img alt="Skyline of Ho Chi Minh City with tall buildings and a clear sky" height="300px"
-                    src="https://storage.googleapis.com/a1aa/image/gP2eTmfXZPvT0Ero846J7MG9uOXCqlVcdV27OH1SdR68R8pTA.jpg"
-                    width="300px" />
-                <h2>TP. Hồ Chí Minh <span class="flag">🇻🇳</span></h2>
+        <div class="carousel">
+            <div class="carousel-track">
+                <!-- <div class="destination">
+                    <img alt="Skyline of Ho Chi Minh City"
+                        src="https://storage.googleapis.com/a1aa/image/gP2eTmfXZPvT0Ero846J7MG9uOXCqlVcdV27OH1SdR68R8pTA.jpg" />
+                    <h2>TP. Hồ Chí Minh <span class="flag">🇻🇳</span><br></h2>
+                </div>
+                <div class="destination">
+                    <img alt="View of Vung Tau"
+                        src="https://storage.googleapis.com/a1aa/image/HRzoyhbF1rKSPJQMEU3lwseDIE6StwjZMrZ29NjoYLxeR8pTA.jpg" />
+                    <h2>Vũng Tàu <span class="flag">🇻🇳</span><br></h2>
+                </div>
+                <div class="destination">
+                    <img alt="Beach view in Da Nang"
+                        src="https://storage.googleapis.com/a1aa/image/9y18jJxWBU5XPtWUdBNePfjAvISiiofBoS2EHjwlkBdeHxnOB.jpg" />
+                    <h2>Đà Nẵng <span class="flag">🇻🇳</span><br></h2>
+                </div>
+                <div class="destination">
+                    <img alt="Beach view in Da Nang"
+                        src="https://storage.googleapis.com/a1aa/image/gP2eTmfXZPvT0Ero846J7MG9uOXCqlVcdV27OH1SdR68R8pTA.jpg" />
+                    <h2>Hạ Long <span class="flag">🇻🇳</span><br></h2>
+                </div>
+                <div class="destination">
+                    <img alt="Beach view in Da Nang"
+                        src="https://storage.googleapis.com/a1aa/image/9y18jJxWBU5XPtWUdBNePfjAvISiiofBoS2EHjwlkBdeHxnOB.jpg" />
+                    <h2>Hà Nội <span class="flag">🇻🇳</span><br></h2>
+                </div>
+                <div class="destination">
+                    <img alt="Beach view in Da Nang"
+                        src="https://storage.googleapis.com/a1aa/image/9y18jJxWBU5XPtWUdBNePfjAvISiiofBoS2EHjwlkBdeHxnOB.jpg" />
+                    <h2>Ninh Bình <span class="flag">🇻🇳</span><br></h2>
+                </div> -->
             </div>
-            <div class="destination">
-                <img alt="View of Vung Tau with boats on the water and a mountain in the background" height="300px"
-                    src="https://storage.googleapis.com/a1aa/image/HRzoyhbF1rKSPJQMEU3lwseDIE6StwjZMrZ29NjoYLxeR8pTA.jpg"
-                    width="300px" />
-                <h2>Vũng Tàu <span class="flag">🇻🇳</span></h2>
-            </div>
-            <div class="destination">
-                <img alt="Beach view in Da Nang with waves and a clear sky" height="300px"
-                    src="https://storage.googleapis.com/a1aa/image/9y18jJxWBU5XPtWUdBNePfjAvISiiofBoS2EHjwlkBdeHxnOB.jpg"
-                    width="300px" />
-                <h2>Đà Nẵng <span class="flag">🇻🇳</span></h2>
-            </div>
+
         </div>
     </div>
+
+
+
     <!-- ----- -->
     <!-- <section class="ftco-section">
         <div class="container22">
@@ -229,7 +231,7 @@
                 </div>
         </div>
     </section> -->
-     <!-- ----------- -->
+    <!-- ----------- -->
     <br>
     <div class="row" *ngIf="!isLoading">
         <div class="ps-container">
@@ -239,7 +241,7 @@
             <br>
             <div class="ps-section__content">
                 <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
-                    <div ngxSlickItem *ngFor="let item of productSeller | paginate: { itemsPerPage: 8, currentPage: 0}"
+                    <div ngxSlickItem *ngFor="let item of productSeller | paginate: { itemsPerPage: 2, currentPage: 0}"
                         class="slide">
                         <div class="ps-product">
                             <div class="ps-product__thumbnail">
@@ -248,10 +250,10 @@
                                 </a>
                                 <div class="ps-product__badge">-{{item.discount}}%</div>
                                 <ul class="ps-product__actions">
-                                    <li><a href="javascript:void(0);"
+                                    <!-- <li><a href="javascript:void(0);"
                                             (click)="addCart(item.tourId, item.price*(1 - item.discount/100))"
                                             data-toggle="tooltip" data-placement="top" title="Thêm Giỏ Hàng"><i
-                                                class="icon-bag2"></i></a></li>
+                                                class="icon-bag2"></i></a></li> -->
                                     <li><a [routerLink]="['/tours-detail/'+item.tourId]" data-toggle="tooltip"
                                             data-placement="top" title="Xem Chi Tiết"><i class="icon-eye"></i></a></li>
                                     <li><a href="javascript:void(0);" (click)="toggleLike(item.tourId)"
@@ -299,17 +301,6 @@
         </div>
     </div>
     <!-- <br><br> -->
-    <!-- <div class="ps-home-ads">
-      <div class="ps-container">
-          <div class="row">
-              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 " ><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home3.jpg" alt=""></a>
-              </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home4.jpg" alt=""></a>
-              </div>
-          </div>
-      </div>
-  </div> -->
-    <br>
     <!-- <div class="row" *ngIf="!isLoading">
         <div class="ps-container">
             <div class="ps-section__header" style="background-color: #e3e3e3; padding-top: 8px;">
@@ -369,7 +360,6 @@
         </div>
     </div> -->
     <!-- ---------tour2--- -->
-    <br>
     <!-- <div class="row" *ngIf="!isLoading">
         <div class="ps-container">
             <div class="ps-section__header" style="background-color: #e3e3e3; padding-top: 8px;">
@@ -428,21 +418,8 @@
             </div>
         </div>
     </div> -->
-
-    <br> <br>
     <!-- -----tour2-end---- -->
     <br><br><br>
-
-    <!-- <div class="ps-home-ads">
-        <div class="ps-container">
-            <div class="row">
-                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home5.jpg" alt=""></a>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="javascript:void(0);"><img src="img/collection/home-1/home5.jpg" alt=""></a>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="ps-download-app">
         <div class="ps-container">
             <div class="ps-block--download-app">

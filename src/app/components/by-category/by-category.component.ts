@@ -6,13 +6,13 @@ import { CartDetail } from 'src/app/common/CartDetail';
 import { Category } from 'src/app/common/Category';
 import { Customer } from 'src/app/common/Customer';
 import { Favorites } from 'src/app/common/Favorites';
-import { Tours } from 'src/app/common/Tours';
+import { Tour } from 'src/app/common/Tour';
 import { Rate } from 'src/app/common/Rate';
 import { CartService } from 'src/app/services/cart.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { FavoritesService } from 'src/app/services/favorites.service';
-import { ToursService } from 'src/app/services/tours.service';
+import { TourService } from 'src/app/services/tour.service';
 import { RateService } from 'src/app/services/rate.service';
 import { SessionService } from 'src/app/services/session.service';
 
@@ -23,7 +23,7 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class ByCategoryComponent implements OnInit {
 
-  tours!: Tours[];
+  tour!: Tour[];
   id!: number;
 
   customer!: Customer;
@@ -47,7 +47,7 @@ export class ByCategoryComponent implements OnInit {
   countRate!: number;
 
   constructor(
-    private ToursService: ToursService,
+    private TourService: TourService,
     private cartService: CartService,
     private router: Router,
     private rateService: RateService,
@@ -91,7 +91,7 @@ export class ByCategoryComponent implements OnInit {
     let avgRating: number = 0;
     this.countRate = 0;
     for (const item of this.rates) {
-      if (item.tours.tourId === id) {
+      if (item.tour.tourId === id) {
         avgRating += item.rating;
         this.countRate++;
       }
@@ -100,9 +100,9 @@ export class ByCategoryComponent implements OnInit {
   }
 
   getTours() {
-    this.ToursService.getByCategory(this.id).subscribe(data => {
+    this.TourService.getByCategory(this.id).subscribe(data => {
       this.isLoading = false;
-      this.tours = data as Tours[];
+      this.tour = data as Tour[];
     }, error => {
       this.toastr.error('Nhãn hàng không tồn tại!', 'Hệ thống');
       this.router.navigate(['/home'])
@@ -120,7 +120,7 @@ export class ByCategoryComponent implements OnInit {
       if (data == null) {
         this.customerService.getByEmail(email).subscribe(data => {
           this.customer = data as Customer;
-          this.favoriteService.post(new Favorites(0, new Customer(this.customer.userId), new Tours(id))).subscribe(data => {
+          this.favoriteService.post(new Favorites(0, new Customer(this.customer.userId), new Tour(id))).subscribe(data => {
             this.toastr.success('Thêm thành công!', 'Hệ thống');
             this.favoriteService.getByEmail(email).subscribe(data => {
               this.favorites = data as Favorites[];
@@ -156,11 +156,11 @@ export class ByCategoryComponent implements OnInit {
     } else
       if (keyF === 'priceDesc') {
         this.key = '';
-        this.tours.sort((a,b)=>b.price-a.price);
+        this.tour.sort((a,b)=>b.price-a.price);
       } else
         if (keyF === 'priceAsc') {
           this.key = '';
-          this.tours.sort((a,b)=>a.price-b.price);
+          this.tour.sort((a,b)=>a.price-b.price);
         }
         else {
           this.key = '';
@@ -177,7 +177,7 @@ export class ByCategoryComponent implements OnInit {
     }
     this.cartService.getCart(email).subscribe(data => {
       this.cart = data as Cart;
-      this.cartDetail = new CartDetail(0, 1, price, new Tours(tourId), new Cart(this.cart.cartId));
+      this.cartDetail = new CartDetail(0, 1, price, new Tour(tourId), new Cart(this.cart.cartId));
       this.cartService.postDetail(this.cartDetail).subscribe(data => {
         this.toastr.success('Thêm vào giỏ hàng thành công!', 'Hệ thống!');
         this.cartService.getAllDetail(this.cart.cartId).subscribe(data => {

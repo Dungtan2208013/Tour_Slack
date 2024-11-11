@@ -84,8 +84,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .container5 h1 {
-  /* font-size: 400; */
-  font-family: 'Courier New', Courier, monospace;
+  font-size: 2.6em;
+  font-family: "Work Sans", sans-serif;
 }
 .header5 {
   display: flex;
@@ -256,6 +256,7 @@
   border-radius: 5px;
   text-decoration: none;
   font-size: 16px;
+  padding-top: 10px;
 }
 .facilities6 {
   margin-top: 20px;

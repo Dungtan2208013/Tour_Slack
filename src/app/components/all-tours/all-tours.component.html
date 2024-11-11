@@ -19,21 +19,24 @@
                             <h4 class="widget-title">LỌC SẢN PHẨM</h4>
                             <ul>
                                 <li>
-                                  <div class="ps-shopping">
-                                    <select class="product-short-select custom-select ml-auto" style="font-size: 15px;" [(ngModel)]="keyF" (change)="sort(keyF)">
-                                        <option selected value="">Tất cả sản phẩm</option>
-                                        <option value="enteredDate">Tour nổi bật</option>
-                                        <option value="priceDesc">Giá giảm dần</option>
-                                        <option value="priceAsc">Giá tăng dần</option>
-                                    </select>
-                                </div>
+                                    <div class="ps-shopping">
+                                        <select class="product-short-select custom-select ml-auto"
+                                            style="font-size: 15px;" [(ngModel)]="keyF" (change)="sort(keyF)">
+                                            <option selected value="">Tất cả sản phẩm</option>
+                                            <option value="enteredDate">Tour nổi bật</option>
+                                            <option value="priceDesc">Giá giảm dần</option>
+                                            <option value="priceAsc">Giá tăng dần</option>
+                                        </select>
+                                    </div>
                                 </li>
                                 <li>
-                                  <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;Phiêu Lưu & Du Lịch</span><br>
-                                  <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;Trải Nghiệm Văn Hóa</span><br>
-                                  <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;Khám Phá Thiên Nhiên</span><br>
-                                  <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;Khám Phá ẩm thực</span><br>
-                                  <input type="checkbox"><span>&nbsp;&nbsp; &nbsp;&nbsp;Di Tích Lịch Sử</span><br>
+                                    <label for="Location">
+                                        Địa Điểm
+                                    </label>
+                                    <input id="location" placeholder="chọn địa điểm" type="text" /><br>
+                                    <button>
+                                        Tìm
+                                    </button>
                                 </li>
                             </ul>
                         </aside>
@@ -64,15 +67,18 @@
 
             <div class="ps-layout__right">
                 <div class="ps-shopping ps-tab-root">
-                  <div>
-                    <img src="img/tour1.jpg" alt=""  width="880px" height="200px"/>
-                  </div>
+                    <div>
+                        <img src="img/ngay7.jpg" alt="" width="880px" height="400px" />
+                    </div>
                     <div class="ps-shopping__header">
                         <div class="product-page-number">
-                            <p>Hiển thị <strong>{{(page-1)*12+1}}–{{((page-1)*12+12)>tours.length?tours.length:(page-1)*12+12}}</strong> trong số <strong>{{tours.length}}</strong> sản phẩm</p>
+                            <p>Hiển thị
+                                <strong>{{(page-1)*12+1}}–{{((page-1)*12+12)>tour.length?tour.length:(page-1)*12+12}}</strong>
+                                trong số <strong>{{tour.length}}</strong> sản phẩm</p>
                         </div>
                         <div class="ps-shopping">
-                            <select class="product-short-select custom-select ml-auto" style="font-size: 15px;" [(ngModel)]="keyF" (change)="sort(keyF)">
+                            <select class="product-short-select custom-select ml-auto" style="font-size: 15px;"
+                                [(ngModel)]="keyF" (change)="sort(keyF)">
                                 <option selected value="">Tất cả sản phẩm</option>
                                 <option value="enteredDate">Sản phẩm mới</option>
                                 <option value="priceDesc">Giá giảm dần</option>
@@ -149,57 +155,62 @@
                     </div> -->
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="tab-1">
-                          <div class="ps-shopping-product">
-                            <div class="row">
-                              <div
-                                class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6"
-                                *ngFor="let item of tours | orderBy : key : reverse | paginate: { itemsPerPage: 12, currentPage: page }"
-                              >
-                                <section class="ftco-section">
-                                  <div class="container22">
-                                    <div class="project-wrap">
-                                        <a [routerLink]="['/tours-detail/' + item.tourId]"> 
-                                        <img [src]="item.image" alt="{{item.name}}" class="img" />
-                                    </a>
-                                        <a class="ps-product__title" [routerLink]="['/tours-detail/'+item.tourId]">{{item.name}}</a>
-                                      <div class="text p-4">
-                                        <span class="days">{{ item.duration }} Days</span>
-                                        <h3><a [routerLink]="['/tours-detail/' + item.tourId]">{{ item.name }}</a></h3>
-                                        <p class="location"><span class="fa fa-map-marker"></span> {{ item.category }}</p>
-                                        
-                                        <ul>
-                                          <li><span class="flaticon-shower"></span>2</li>
-                                          <li><span class="flaticon-king-size"></span>3</li>
-                                          <li><span class="flaticon-mountains"></span>Near Beach</li>
-                                          <!-- <span class="price">{{ item.price | currency: 'VND' }}/person</span> -->
-                                          <p class="ps-product__price sale" class="price">
-                                            <del *ngIf="item.discount != 0">{{item.price|currency:'VND'}}</del>
-                                            {{item.price*(1 - item.discount/100) | currency:'VND'}}
-                                        </p>
-                                        </ul>
-                                      </div>
+                            <div class="ps-shopping-product">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6"
+                                        *ngFor="let item of tour | orderBy : key : reverse | paginate: { itemsPerPage: 12, currentPage: page }">
+                                        <section class="ftco-section">
+                                            <div class="container22">
+                                                <div class="project-wrap">
+                                                    <a [routerLink]="['/tours-detail/' + item.tourId]">
+                                                        <img [src]="item.image" class="img" />
+                                                        <!-- alt="{{item.name}}" -->
+                                                    </a>
+                                                    <a class="ps-product__title"
+                                                        [routerLink]="['/tours-detail/'+item.tourId]"></a>
+                                                    <!-- {{item.name}} -->
+                                                    <div class="text p-4">
+                                                        <span class="days">{{ item.duration }} Days</span>
+                                                        <h3><a [routerLink]="['/tours-detail/' + item.tourId]">{{
+                                                                item.name }}</a></h3>
+                                                        <p class="location"><span class="fa fa-map-marker"></span> {{
+                                                            item.category.categoryName }}</p>
+
+                                                        <ul>
+                                                            <li><span><img src="img/bathroom.png" alt="" width="20px"
+                                                                        height="20px"></span>2</li>
+                                                            <li><span><img src="img/bed.png" alt="" width="20px"
+                                                                        height="20px"></span>3</li>
+                                                            <li><span> <img src="img/palm-tree.png" alt="" width="20px"
+                                                                        height="20px"></span>Tree</li>
+                                                            <!-- <span class="price">{{ item.price | currency: 'VND' }}/person</span> -->
+                                                            <p class="ps-product__price sale">
+
+                                                                <!-- class="price" -->
+                                                                <del
+                                                                    *ngIf="item.discount != 0">{{item.price|currency:'VND'}}</del>
+                                                                {{item.price*(1 - item.discount/100) | currency:'VND'}}
+                                                            </p>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
                                     </div>
-                                  </div>
-                                </section>
-                              </div>
+                                </div>
                             </div>
-                          </div>
-                          <div class="row" style="padding-top: 50px">
-                            <div class="col-lg-12">
-                              <ul>
-                                <pagination-controls
-                                  (pageChange)="page = $event"
-                                  previousLabel=""
-                                  nextLabel=""
-                                  class="text-center my-page"
-                                >
-                                </pagination-controls>
-                              </ul>
+                            <div class="row" style="padding-top: 50px">
+                                <div class="col-lg-12">
+                                    <ul>
+                                        <pagination-controls (pageChange)="page = $event" previousLabel="" nextLabel=""
+                                            class="text-center my-page">
+                                        </pagination-controls>
+                                    </ul>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
-                      
+                    </div>
+
                     <!-- ----------- -->
                 </div>
             </div>
@@ -229,12 +240,11 @@
     </div>
 </div>
 
- <ng-template #t let-fill="fill">
+<ng-template #t let-fill="fill">
     <span class="star" [class.full]="fill === 100" style="font-size: 90%;">
         <span class="half" [style.width.%]="fill">
             <i class="fa fa-star"></i>
         </span>
         <i class="fa fa-star"></i>
     </span>
-</ng-template> 
-
+</ng-template>

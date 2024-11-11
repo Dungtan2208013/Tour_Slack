@@ -3,7 +3,7 @@
         <div class="container">
             <ul class="breadcrumb">
                 <li><a [routerLink]="['/home']">Trang chủ</a></li>
-                <li><a [routerLink]="['/all-product']">Cửa hàng</a></li>
+                <li><a [routerLink]="['/all-tours']">Cửa hàng</a></li>
                 <li>Giỏ hàng</li>
             </ul>
         </div>
@@ -14,20 +14,23 @@
                 <h1>Giỏ Hàng</h1>
             </div>
             <div class="ps-section__content">
-                <div class="table-responsive" *ngIf="cartDetails.length>0">
-                    <table class="table ps-table--shopping-cart ps-table--responsive">
+                <div class="table-responsive">
+                    <!-- *ngIf="cartDetails.length>0" -->
+                    <!-- <table class="table ps-table--shopping-cart ps-table--responsive">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Sản phẩm</th>
+                                <th>Tên Tour</th>
                                 <th>Giá</th>
-                                <th>Số Người</th>
+                                <th>Ngày nhận Phòng</th>
+                                <th>Ngày trả phòng</th>
+                                <th>Số Người Đi</th>
                                 <th>Tổng tiền</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of cartDetails, index as i">
+                            <tr *ngFor="let item of cartList, index as i">
                                 <td>{{i+1}}</td>
                                 <td data-label="Product">
                                     <div class="ps-product--cart">
@@ -37,12 +40,24 @@
                                         </div>
                                         <div class="ps-product__content">
                                             <a [routerLink]="['/tours-detail/'+item.tours.tourId]">{{item.tours.name}}</a>
-                                            <p>Thể loại:<strong> {{item.tours.category.categoryName}}</strong></p>
                                         </div>
                                     </div>
                                 </td>
                                 <td style="text-align: center;" class="price" data-label="Price">
                                     {{item.tours.price*(1 - item.tours.discount/100) | currency:'VND'}}
+                                </td>
+                                <td style="text-align: center;" class="start_date" data-label="start_date">
+                                    <input style="text-align: center;"
+                                    type="date"
+                                    placeholder="0" name="start_date"
+                                    [(ngModel)]="startDate"/>
+                                </td>
+                                <td style="text-align: center;" class="end_date" data-label="end_date">
+                                    <input style="text-align: center;"
+                                    type="date" 
+                                
+                                    placeholder="0" name="end_date"
+                                    [(ngModel)]="endDate"/>
                                 </td>
                                 <td data-label="Quantity" style="text-align: center;">
                                     <input style="text-align: center;"
@@ -60,62 +75,93 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-                </div>
-                <div class="row mt-5 mb-5" *ngIf="cartDetails.length==0">
-                    <div class="col-8 offset-2 text-center">
-                        <!-- <h2 style="color: #fcb800;">Giỏ hàng trống</h2>
-                        <h2 style="color: #fcb800;;">Hãy chọn 1 vài sản phẩm vào giỏ hàng của bạn.</h2> -->
-                        <h2 style="color: #003b95;">Giỏ hàng trống</h2>
-                        <h2 style="color: #003b95;">Hãy chọn 1 vài sản phẩm vào giỏ hàng của bạn.</h2>
-                    </div>
-                </div>
-                <div class="ps-section__cart-actions">
-                    <a class="ps-btn" [routerLink]="['/all-tours']">
-                    <i class="icon-arrow-left"></i> Quay lại cửa hàng</a>
-                </div>
-            </div>
+                    </table> -->
+                    <div class="ps-section__content">
+                        <div class="table-responsive">
+                            <div>
+                                <form action="#">
+                                    <table class="table ps-table--shopping-cart ps-table--responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Tên Tour</th>
+                                                <th>Ngày nhận Phòng</th>
+                                                <th>Ngày trả phòng</th>
+                                                <th>Số Người Đi</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of cartList; index as i">
+                                                <td>{{ i + 1 }}</td>
+                                                <td>{{ item.tourId }}</td>
+                                                <td>{{ item.dataTour.startDate }}</td>
+                                                <td>{{ item.dataTour.endDate }}</td>
+                                                <td>{{ item.dataTour.numberofTour }}</td>
+                                                <td>{{ (item.price * (1 - item.tour.discount / 100)) * item.dataTour.numberofTour | currency: 'VND' }}</td>
+                                                <td>
+                                                    <a href="javascript:void(0);" (click)="delete(item.tourId)">Xóa</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
 
-            <div class="ps-section__footer" *ngIf="cartDetails.length>0">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-12 ">
-                        <div class="ps-block--shopping-total">
-                            <div class="ps-block__header">
-                                <h4 class="title">Thanh toán giỏ hàng</h4>
+                        </div>
+                        <div class="row mt-5 mb-5" *ngIf="cartDetails.length==0">
+                            <div class="col-8 offset-2 text-center">
+                                <h2 style="color: #003b95;">Giỏ hàng trống</h2>
+                                <h2 style="color: #003b95;">Hãy chọn 1 vài sản phẩm vào giỏ hàng của bạn.</h2>
                             </div>
-                            <div class="ps-block__header">
-                                <p>Tổng tiền <span> {{amountReal | currency:'VND'}}</span></p>
-                                <p>Tiết kiệm <span> {{discount | currency:'VND'}}</span></p>
-                            </div>
-                            <div class="ps-block__content">
-                                <h3>Tổng tiền phải thanh toán <span> {{amount | currency:'VND'}}</span></h3>
-                            </div>
-                        </div><a class="ps-btn ps-btn--fullwidth" [routerLink]="['/checkout']">Thanh toán</a>
+                        </div>
+                        <div class="ps-section__cart-actions">
+                            <a class="ps-btn" [routerLink]="['/all-tours']">
+                                <i class="icon-arrow-left"></i> Quay lại cửa hàng</a>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="ps-newsletter">
-    <div class="container">
-        <form class="ps-form--newsletter">
-            <div class="row">
-                <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                    <div class="ps-form__left">
-                        <h3>Bản tin</h3>
-                        <p>Đăng ký để nhận thông tin về sản phẩm và phiếu giảm giá</p>
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                    <div class="ps-form__right">
-                        <div class="form-group--nest">
-                            <input class="form-control" type="email" placeholder="Địa chỉ Email">
-                            <button class="ps-btn">Gửi</button>
+
+                    <div class="ps-section__footer" *ngIf="cartDetails.length>0">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-12 ">
+                                <div class="ps-block--shopping-total">
+                                    <div class="ps-block__header">
+                                        <h4 class="title">Thanh toán giỏ hàng</h4>
+                                    </div>
+                                    <div class="ps-block__header">
+                                        <p>Tổng tiền <span> {{amountReal | currency:'VND'}}</span></p>
+                                        <p>Tiết kiệm <span> {{discount | currency:'VND'}}</span></p>
+                                    </div>
+                                    <div class="ps-block__content">
+                                        <h3>Tổng tiền phải thanh toán <span> {{amount | currency:'VND'}}</span></h3>
+                                    </div>
+                                </div><a class="ps-btn ps-btn--fullwidth" [routerLink]="['/checkout']">Thanh toán</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
+        <div class="ps-newsletter">
+            <div class="container">
+                <form class="ps-form--newsletter">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-form__left">
+                                <h3>Bản tin</h3>
+                                <p>Đăng ký để nhận thông tin về sản phẩm và phiếu giảm giá</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-form__right">
+                                <div class="form-group--nest">
+                                    <input class="form-control" type="email" placeholder="Địa chỉ Email">
+                                    <button class="ps-btn">Gửi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>

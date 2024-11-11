@@ -16,5 +16,5 @@ export class LocationService {
   getOne(id: number) {
     return this.httpClient.get(this.url + '/' + id);
   }
-}
+}        
 

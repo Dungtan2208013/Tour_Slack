@@ -8,12 +8,12 @@ import { CartDetail } from 'src/app/common/CartDetail';
 import { ChatMessage } from 'src/app/common/ChatMessage';
 import { District } from 'src/app/common/District';
 import { Notification } from 'src/app/common/Notification';
-import { Books } from 'src/app/common/Books';
+import { Book } from 'src/app/common/Book';
 import { Province } from 'src/app/common/Province';
 import { Ward } from 'src/app/common/Ward';
 import { CartService } from 'src/app/services/cart.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { booksService } from 'src/app/services/books.service';
+import { bookService } from 'src/app/services/book.service';
 import { ProvinceService } from 'src/app/services/province.service';
 import { SessionService } from 'src/app/services/session.service';
 import { WebSocketService } from 'src/app/services/web-socket.service';
@@ -55,7 +55,7 @@ export class CheckoutComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private sessionService: SessionService,
-    private booksService: booksService,
+    private bookService: bookService,
     private location: ProvinceService,
     private webSocketService: WebSocketService,
     private notificationService: NotificationService) {
@@ -104,7 +104,7 @@ export class CheckoutComponent implements OnInit {
           this.toastr.info('Hãy chọn một vài sản phẩm rồi tiến hành thanh toán', 'Hệ thống');
         }
         this.cartDetails.forEach(item => {
-          this.amountReal += item.tours.price * item.quantity;
+          this.amountReal += item.tour.price * item.quantity;
           this.amount += item.price;
         })
         this.discount = this.amount - this.amountReal;
@@ -132,8 +132,8 @@ export class CheckoutComponent implements OnInit {
           this.cart.phone = this.postForm.value.phone;
           this.cartService.updateCart(email, this.cart).subscribe(data => {
             this.cart = data as Cart;
-            this.booksService.post(email, this.cart).subscribe(data => {
-              let book:Books = data as Books;
+            this.bookService.post(email, this.cart).subscribe(data => {
+              let book:Book = data as Book;
               this.sendMessage(book.bookId);
               Swal.fire(
                 'Thành công!',

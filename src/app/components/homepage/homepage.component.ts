@@ -5,12 +5,12 @@ import { Cart } from 'src/app/common/Cart';
 import { CartDetail } from 'src/app/common/CartDetail';
 import { Customer } from 'src/app/common/Customer';
 import { Favorites } from 'src/app/common/Favorites';
-import { Tours } from 'src/app/common/Tours';
+import { Tour } from 'src/app/common/Tour';
 import { Rate } from 'src/app/common/Rate';
 import { CartService } from 'src/app/services/cart.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { FavoritesService } from 'src/app/services/favorites.service';
-import { ToursService } from 'src/app/services/tours.service';
+import { TourService } from 'src/app/services/tour.service';
 import { RateService } from 'src/app/services/rate.service';
 import { SessionService } from 'src/app/services/session.service';
 // import { NavigationEnd, Router } from '@angular/router';
@@ -25,9 +25,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 export class HomepageComponent implements OnInit {
   
   
-  productSeller!:Tours[];
-  productLatest!:Tours[];
-  productRated!:Tours[];
+  productSeller!:Tour[];
+  productLatest!:Tour[];
+  productRated!:Tour[];
 
   isLoading = true;
 
@@ -45,7 +45,7 @@ export class HomepageComponent implements OnInit {
   slideConfig = {"slidesToShow": 7, "slidesToScroll": 2, "autoplay": true};
 
   constructor(
-    private ToursService: ToursService,
+    private TourService: TourService,
     private cartService: CartService,
     private customerService: CustomerService,
     private rateService: RateService,
@@ -77,7 +77,7 @@ export class HomepageComponent implements OnInit {
     let avgRating: number = 0;
     this.countRate = 0;
     for (const item of this.rates) {
-      if (item.tours.tourId === id) {
+      if (item.tour.tourId === id) {
         avgRating += item.rating;
         this.countRate++;
       }
@@ -86,8 +86,8 @@ export class HomepageComponent implements OnInit {
   }
 
   getAllProductBestSeller() {
-    this.ToursService.getBestSeller().subscribe(data=>{
-      this.productSeller = data as Tours[];
+    this.TourService.getBestSeller().subscribe(data=>{
+      this.productSeller = data as Tour[];
       this.isLoading = false;
     }, error=>{
       this.toastr.error('Lỗi server!', 'Hệ thống')   
@@ -96,8 +96,8 @@ export class HomepageComponent implements OnInit {
   }
 
   getAllProductLatest() {
-    this.ToursService.getLasted().subscribe(data=>{
-      this.productLatest = data as Tours[];
+    this.TourService.getLasted().subscribe(data=>{
+      this.productLatest = data as Tour[];
       this.isLoading = false;
     }, error=>{
       this.toastr.error('Lỗi server!', 'Hệ thống')  
@@ -106,8 +106,8 @@ export class HomepageComponent implements OnInit {
   }
 
   getAllProductRated() {
-    this.ToursService.getRated().subscribe(data=>{
-      this.productRated = data as Tours[];
+    this.TourService.getRated().subscribe(data=>{
+      this.productRated = data as Tour[];
       this.isLoading = false;
     }, error=>{
       this.toastr.error('Lỗi server!', 'Hệ thống')   
@@ -115,7 +115,7 @@ export class HomepageComponent implements OnInit {
          
     })
   }
-
+  
   toggleLike(id: number) {
     let email = this.sessionService.getUser();
     if (email == null) {
@@ -127,7 +127,7 @@ export class HomepageComponent implements OnInit {
       if (data == null) {
         this.customerService.getByEmail(email).subscribe(data => {
           this.customer = data as Customer;
-          this.favoriteService.post(new Favorites(0, new Customer(this.customer.userId), new Tours(id))).subscribe(data => {
+          this.favoriteService.post(new Favorites(0, new Customer(this.customer.userId), new Tour(id))).subscribe(data => {
             this.toastr.success('Thêm thành công!', 'Hệ thống');
             this.favoriteService.getByEmail(email).subscribe(data=>{
               this.favorites = data as Favorites[];
@@ -165,7 +165,7 @@ export class HomepageComponent implements OnInit {
     }
     this.cartService.getCart(email).subscribe(data => {
       this.cart = data as Cart;
-      this.cartDetail = new CartDetail(0, 1, price, new Tours(tourId), new Cart(this.cart.cartId));
+      this.cartDetail = new CartDetail(0, 1, price, new Tour(tourId), new Cart(this.cart.cartId));
       this.cartService.postDetail(this.cartDetail).subscribe(data => {
         this.toastr.success('Thêm vào giỏ hàng thành công!', 'Hệ thống!');
         this.cartService.getAllDetail(this.cart.cartId).subscribe(data => {

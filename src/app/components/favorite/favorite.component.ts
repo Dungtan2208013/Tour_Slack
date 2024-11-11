@@ -8,7 +8,7 @@ import { Favorites } from 'src/app/common/Favorites';
 import { CartService } from 'src/app/services/cart.service';
 import { FavoritesService } from 'src/app/services/favorites.service';
 import { SessionService } from 'src/app/services/session.service';
-import { Tours } from 'src/app/common/Tours';
+import { Tour } from 'src/app/common/Tour';
 
 @Component({
   selector: 'app-favorite',
@@ -70,7 +70,6 @@ export class FavoriteComponent implements OnInit {
       }
     })    
   }
-
   addCart(tourId: number, price: number) {
     let email = this.sessionService.getUser();
     if (email == null) {
@@ -80,7 +79,7 @@ export class FavoriteComponent implements OnInit {
     }
     this.cartService.getCart(email).subscribe(data => {
       this.cart = data as Cart;
-      this.cartDetail = new CartDetail(0, 1, price, new Tours(tourId), new Cart(this.cart.cartId));
+      this.cartDetail = new CartDetail(0, 1, price, new Tour(tourId), new Cart(this.cart.cartId));
       this.cartService.postDetail(this.cartDetail).subscribe(data => {
         this.toastr.success('Thêm vào giỏ hàng thành công!', 'Hệ thống!');
         this.cartService.getAllDetail(this.cart.cartId).subscribe(data => {

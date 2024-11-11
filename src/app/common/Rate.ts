@@ -1,6 +1,6 @@
 import { Customer } from "./Customer";
-import { BookDetails } from "./BookDetails";
-import { Tours } from "./Tours";
+import { BookDetail } from "./BookDetail";
+import { Tour } from "./Tour";
 
 export class Rate {
     'id': number;
@@ -8,6 +8,6 @@ export class Rate {
     'comment': string;
     'rateDate': Date;
     'user': Customer;
-    'tours': Tours;
-    'BookDetails': BookDetails;
+    'tour': Tour;
+    'BookDetail': BookDetail;
 }

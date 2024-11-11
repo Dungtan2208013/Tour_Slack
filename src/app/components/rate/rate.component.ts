@@ -3,8 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/common/Customer';
-import { BookDetails } from 'src/app/common/BookDetails';
-import { Tours } from 'src/app/common/Tours';
+import { BookDetail } from 'src/app/common/BookDetail';
+import { Tour } from 'src/app/common/Tour';
 import { Rate } from 'src/app/common/Rate';
 import { CustomerService } from 'src/app/services/customer.service';
 import { RateService } from 'src/app/services/rate.service';
@@ -24,7 +24,7 @@ export class RateComponent implements OnInit {
 
   modalReference!:any;
 
-  @Input() BookDetails!: BookDetails;
+  @Input() BookDetail!: BookDetail;
   @Output()
   editFinish: EventEmitter<any> = new EventEmitter<any>();
 
@@ -49,7 +49,7 @@ export class RateComponent implements OnInit {
   }
 
   getRate() {
-    this.rateService.getByBooksDetails(this.BookDetails.bookDetailId).subscribe(data => {//bookDetailsId
+    this.rateService.getByBooksDetails(this.BookDetail.bookDetailId).subscribe(data => {//bookDetailsId
       this.rate = data as Rate;
       if (this.rate != null) {
         this.star = this.rate.rating;
@@ -59,8 +59,8 @@ export class RateComponent implements OnInit {
           'comment': new FormControl(this.rate.comment),
           'rateDate': new FormControl(this.rate.rateDate),
           'user': new FormControl(new Customer(this.rate.user.userId)),
-          'product': new FormControl(new Tours(this.rate.tours.tourId)),
-          'orderDetail': new FormControl(new BookDetails(this.rate.BookDetails.bookDetailId))
+          'product': new FormControl(new Tour(this.rate.tour.tourId)),
+          'orderDetail': new FormControl(new BookDetail(this.rate.BookDetail.bookDetailId))
         })
       }
     }, error => {
@@ -76,8 +76,8 @@ export class RateComponent implements OnInit {
         
         this.rate = this.postForm.value;
         this.rate.rating = this.star;
-        this.rate.BookDetails = this.BookDetails;
-        this.rate.tours = this.BookDetails.tours;
+        this.rate.BookDetail = this.BookDetail;
+        this.rate.tour = this.BookDetail.tour;
         
         this.rate.user = data as Customer;
 

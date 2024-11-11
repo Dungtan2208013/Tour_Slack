@@ -4,14 +4,14 @@ import { ToastrService } from 'ngx-toastr';
 import { ChatMessage } from 'src/app/common/ChatMessage';
 import { Customer } from 'src/app/common/Customer';
 import { Notification } from 'src/app/common/Notification';
-import { Books } from 'src/app/common/Books';
+import { Book } from 'src/app/common/Book';
 import { CustomerService } from 'src/app/services/customer.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { SessionService } from 'src/app/services/session.service';
 import { WebSocketService } from 'src/app/services/web-socket.service';
 import Swal from 'sweetalert2';
-import { BookDetails } from 'src/app/common/BookDetails';
-import { booksService } from 'src/app/services/books.service';
+import { BookDetail } from 'src/app/common/BookDetail';
+import { bookService } from 'src/app/services/book.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,9 +20,9 @@ import { booksService } from 'src/app/services/books.service';
 export class ProfileComponent implements OnInit {
 
   customer!: Customer;
-  booksDetails!: BookDetails[];
-  book!: Books;
-  books!: Books[];
+  booksDetails!: BookDetail[];
+  book!: Book;
+  books!: Book[];
 
   page: number = 1;
 
@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
     private toastr: ToastrService,
     private sessionService: SessionService,
     private router: Router,
-    private booksService: booksService,
+    private bookService: bookService,
     private webSocketService: WebSocketService,
     private notificationService: NotificationService) {
 
@@ -67,8 +67,8 @@ export class ProfileComponent implements OnInit {
 
   getBooks() {
     let email = this.sessionService.getUser();
-    this.booksService.get(email).subscribe(data => {
-      this.books = data as Books[];
+    this.bookService.get(email).subscribe(data => {
+      this.books = data as Book[];
       this.done = 0;
       this.books.forEach(o => {
         if (o.status === 2) {
@@ -93,7 +93,7 @@ export class ProfileComponent implements OnInit {
       confirmButtonText: 'Huỷ'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.booksService.cancel(id).subscribe(data => {
+        this.bookService.cancel(id).subscribe(data => {
           this.getBooks ();
           this.sendMessage(id);
           this.toastr.success('Huỷ đơn hàng thành công!', 'Hệ thống');

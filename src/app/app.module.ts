@@ -21,7 +21,7 @@ import { ByCategoryComponent } from './components/by-category/by-category.compon
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { ToursDetailComponent } from './components/tours-detail/tours-detail.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RateComponent } from './components/rate/rate.component';
@@ -63,7 +63,7 @@ const routes: Routes = [
     CartComponent,
     CheckoutComponent,
     NotFoundComponent,
-    BookDetailsComponent,
+    BookDetailComponent,
     ToursDetailComponent,
     ProfileComponent,
     RateComponent,

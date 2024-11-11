@@ -1,18 +1,18 @@
 import { Cart } from "./Cart";
-import { Tours } from "./Tours";
+import { Tour } from "./Tour";
 
 export class CartDetail {
     'cartDetailId': number;
     'quantity': number;
     'price': number;
-    'tours': Tours;
+    'tour': Tour;
     'cart': Cart;
 
-    constructor(id: number, quantity: number, price: number, tours: Tours, cart: Cart) {
+    constructor(id: number, quantity: number, price: number, tour: Tour, cart: Cart) {
         this.cartDetailId = id;
         this.quantity = quantity;
         this.price = price;
-        this.tours = tours;
+        this.tour = tour;
         this.cart = cart;
     }
 }

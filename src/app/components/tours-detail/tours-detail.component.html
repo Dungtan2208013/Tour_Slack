@@ -208,24 +208,23 @@
     <div class="sidebar4">
      <h2>
      </h2>
-     <label for="destination">
+     <label for="destination" class="start_date">
       Ngày nhận Phòng
      </label>
-     <input id="destination" placeholder="Chủ Nhật, ngày 8 tháng 11 năm..." type="text"/>
-     <label for="checkin">
+     <input id="destination" [(ngModel)]="startDate" (change)="onStartDateChange()" [min]="today" placeholder="Chủ Nhật, ngày 8 tháng 11 năm..." type="date"/>
+
+     <label for="checkin" class="end_start">
       Ngày trả phòng
      </label>
-     <input id="checkin" placeholder="Chủ Nhật, ngày 10 tháng 11 năm...." type="text"/>
-     <label for="checkout">
-      Số người đi
-     </label>
-     <input id="checkout" placeholder="2 người - 3 người" type="text"/>
-     <button>
-      Tìm
-     </button>
+     <input id="checkin" [(ngModel)]="endDate" readonly placeholder="Chủ Nhật, ngày 10 tháng 11 năm...." type="date"/>
+
+     <label for="checkin" class="numberofTour">
+        Số người đi
+       </label>
+       <input id="checkin" [(ngModel)]="numberofTour" placeholder="2-3 người" type="number"/>
     </div>
 </div>
- <!-- --------------------- -->
+ <!------------->
 <div class="container5" >
     <!-- *ngIf="getAvgRate(tour.tourId)>0 -->
     <!-- <ngb-rating [rate]="getAvgRate(tour.tourId)" [starTemplate]="t" [readonly]="true" [max]="5"
@@ -260,9 +259,9 @@
  <div class="modal" id="galleryModal">
      <button class="close-btn" onclick="closeGallery()">×</button>
      <div class="modal-content">
-         <img src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" alt="Gallery Image 1">
-         <img src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" alt="Gallery Image 2">
-         <img src="https://storage.googleapis.com/a1aa/image/QSdt53pZzC5OGVg6DgPW3jnSyXQUKU6RsM1bmJJy8sSv1Z7E.jpg" alt="Gallery Image 3">
+         <img [src]="tour.image" alt="Gallery Image 1">
+         <img [src]="tour.image" alt="Gallery Image 2">
+         <img [src]="tour.image" alt="Gallery Image 3">
      </div>
  </div>
 </div>
@@ -270,7 +269,7 @@
  <div class="container6">
     <div class="container61">
         <div class="content6">
-            <p>{{tour.description}}</p>
+            <p>{{tour.description}}</p><br>
             <p>Các cặp đôi đặc biệt thích địa điểm này — họ cho điểm <strong>9,8</strong> khi đánh giá chuyến đi hai người.</p>
             <p>Các khoảng cách nêu trong mô tả chỗ nghỉ được tính toán bằng © OpenStreetMap</p>
             <div class="facilities6">
@@ -299,7 +298,7 @@
                     {{tour.price*(1 - tour.discount/100) | currency:'VND'}}</div>
                 <!-- <button class="select-options">Select options</button> -->
                </div>
-            <a href="#" class="button6">Đặt ngay</a>
+            <a  class="button6" (click)="addCarts(tour.tourId)" >thêm vào giỏ hàng</a>
         </div>
     </div>
 </div>
@@ -318,7 +317,7 @@
                     <div class="ps-form__right">
                         <div class="form-group--nest">
                             <input class="form-control" type="email" placeholder="Địa chỉ Email">
-                            <button class="ps-btn">Gửi</button>
+                            <button class="ps-btn" >Gửi</button>
                         </div>
                     </div>
                 </div>

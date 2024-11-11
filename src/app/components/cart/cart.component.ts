@@ -3,11 +3,11 @@ import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { Cart } from 'src/app/common/Cart';
-import { Tours } from 'src/app/common/Tours';
+import { Tour } from 'src/app/common/Tour';
 import { CartDetail } from 'src/app/common/CartDetail';
 import { CartService } from 'src/app/services/cart.service';
 import { SessionService } from 'src/app/services/session.service';
-import { ToursService } from 'src/app/services/tours.service';
+import { TourService } from 'src/app/services/tour.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,11 +15,15 @@ import { ToursService } from 'src/app/services/tours.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+// --------
+  startDate: string = '';
+  endDate: string = '';
+  numberofTour!: number;
+// ----------
   cart!: Cart;
   cartDetail!: CartDetail;
   cartDetails!: CartDetail[];
-
+  cartList: any[] = [];
   discount!:number;
   amount!:number;
   amountReal!:number;
@@ -29,9 +33,7 @@ export class CartComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private sessionService: SessionService) {
-
    }
-
   ngOnInit(): void {
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
@@ -39,12 +41,38 @@ export class CartComponent implements OnInit {
       }
       window.scrollTo(0, 0)
     });
-    this.discount=0;
-    this.amount=0;
-    this.amountReal=0;
-    this.getAllItem();
+    // this.discount=0;
+    // this.amount=0;
+    // this.amountReal=0;
+    // this.getAllItem();
+    this.addCarts();
+   console.log('dattaa',this.cartList );
   }
+  
+  addCarts() {
+    // Lấy dữ liệu giỏ hàng hiện tại từ localStorage
+    const localStorageData = localStorage.getItem('cart');
+    
+    
+    if (localStorageData) {
+      // Nếu localStorage có dữ liệu, chuyển đổi thành mảng
+      this.cartList = JSON.parse(localStorageData);
+    }
+    // console.log('dât',localStorageData)
+   
 
+  }
+  
+  onBook() {
+    // Điều hướng đến trang book với dữ liệu
+    this.router.navigate(['/book'], {
+      queryParams: {
+        startDate: this.startDate,
+        endDate: this.endDate,
+      }
+    });
+  }
+// ----
   getAllItem() {
     let email = this.sessionService.getUser();
     this.cartService.getCart(email).subscribe(data => {
@@ -53,7 +81,7 @@ export class CartComponent implements OnInit {
         this.cartDetails = data as CartDetail[];
         this.cartService.setLength(this.cartDetails.length);
         this.cartDetails.forEach(item=>{
-          this.amountReal += item.tours.price * item.quantity;
+          this.amountReal += item.tour.price * item.quantity;
           this.amount += item.price;
         })
         this.discount = this.amount - this.amountReal;
@@ -68,7 +96,7 @@ export class CartComponent implements OnInit {
       this.cartService.getOneDetail(id).subscribe(data => {
         this.cartDetail = data as CartDetail;
         this.cartDetail.quantity = quantity;
-        this.cartDetail.price = (this.cartDetail.tours.price * (1 - this.cartDetail.tours.discount / 100)) * quantity;
+        this.cartDetail.price = (this.cartDetail.tour.price * (1 - this.cartDetail.tour.discount / 100)) * quantity;
         this.cartService.updateDetail(this.cartDetail).subscribe(data => {
           this.ngOnInit();
         }, error => {

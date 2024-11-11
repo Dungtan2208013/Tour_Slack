@@ -6,12 +6,12 @@ import { Cart } from 'src/app/common/Cart';
 import { CartDetail } from 'src/app/common/CartDetail';
 import { Customer } from 'src/app/common/Customer';
 import { Favorites } from 'src/app/common/Favorites';
-import { Tours } from 'src/app/common/Tours';
+import { Tour } from 'src/app/common/Tour';
 import { Rate } from 'src/app/common/Rate';
 import { CartService } from 'src/app/services/cart.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { FavoritesService } from 'src/app/services/favorites.service';
-import { ToursService } from 'src/app/services/tours.service';
+import { TourService } from 'src/app/services/tour.service';
 import { RateService } from 'src/app/services/rate.service';
 import { SessionService } from 'src/app/services/session.service';
 import { RouterModule } from '@angular/router';
@@ -34,8 +34,14 @@ export class ToursDetailComponent implements OnInit {
   closeGallery(): void {
     this.galleryModal.nativeElement.style.display = 'none';
   }
-  tour!: Tours;
-  tours!: Tours[];
+  // ------datetime------\
+  
+  startDate!: string;
+  endDate!: string;
+  numberofTour!: number;
+  // -------------
+  tour!: Tour;
+  tours!: Tour[];
   id!: number;
 
   isLoading = true;
@@ -49,21 +55,21 @@ export class ToursDetailComponent implements OnInit {
   cartDetail!: CartDetail;
   cartDetails!: CartDetail[];
 
-  rates!:Rate[];
-  rateAll!:Rate[];
-  countRate!:number;
+  rates!: Rate[];
+  rateAll!: Rate[];
+  countRate!: number;
 
-  itemsComment:number = 3;
-  
-  
+  itemsComment: number = 3;
+  today: string = '';
+
   constructor(
-    private ToursService: ToursService,
+    private TourService: TourService,
     private modalService: NgbModal,
-    private cartService: CartService, 
+    private cartService: CartService,
     private toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
-    private customerService: CustomerService, 
+    private customerService: CustomerService,
     private favoriteService: FavoritesService,
     private sessionService: SessionService,
     private rateService: RateService) {
@@ -71,9 +77,19 @@ export class ToursDetailComponent implements OnInit {
       this.ngOnInit();
     })
   }
-  slideConfig = {"slidesToShow": 7, "slidesToScroll": 2, "autoplay": true};
+  slideConfig = { "slidesToShow": 7, "slidesToScroll": 2, "autoplay": true };
+  // --------
 
+  // ----------
   ngOnInit(): void {
+    // ------
+    const current = new Date();
+    const year = current.getFullYear();
+    const month = String(current.getMonth() + 1).padStart(2, '0');
+    const day = String(current.getDate()).padStart(2, '0');
+    
+    this.today = `${year}-${month}-${day}`;
+    this.startDate = this.today; // Optionally set startDate to today by default
     this.modalService.dismissAll();
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
@@ -95,15 +111,80 @@ export class ToursDetailComponent implements OnInit {
     this.getAllRate();
     this.itemsComment = size;
     console.log(this.itemsComment);
-    
+
   }
-  
+  onStartDateChange() {
+    if (this.startDate) {
+      const start = new Date(this.startDate); // Chuyển startDate thành đối tượng Date
+      start.setDate(start.getDate() + this.tour.duration); // Thêm duration vào ngày startDate
+
+      const year = start.getFullYear();
+      const month = String(start.getMonth() + 1).padStart(2, '0'); // Lấy tháng (cộng thêm 1 vì tháng trong Date bắt đầu từ 0)
+      const day = String(start.getDate()).padStart(2, '0'); // Lấy ngày
+
+      this.endDate = `${year}-${month}-${day}`; // Cập nhật endDate với định dạng yyyy-mm-dd
+    }
+  }
+  addCarts(tourId: any): void {
+    const dataTour = {
+      startDate: this.startDate,
+      endDate: this.endDate,
+      numberofTour: this.numberofTour,
+    };
+    this.TourService.getOne(tourId).subscribe(tourToAdd => {
+      if (tourToAdd) {
+        // Lấy dữ liệu hiện tại từ localStorage và chuyển thành mảng nếu có, ngược lại tạo mảng rỗng
+        const localStorageData = JSON.parse(localStorage.getItem('cart') || '[]');
+        let currentCart: any[] = localStorageData;
+
+        // Tạo đối tượng mới chứa cả tour và dataTour
+        const cartItem = {
+          ...tourToAdd,
+          dataTour
+        };
+
+        // Thêm đối tượng mới vào giỏ hàng
+        currentCart.push(cartItem);
+
+        // Lưu giỏ hàng đã cập nhật trở lại localStorage
+        localStorage.setItem('cart', JSON.stringify(currentCart));
+      }
+    });
+    this.router.navigate(['/cart']);
+  }
+
+  // addCarts(tourId: any): void {
+  //   const dataTour = {
+  //     startDate: this.startDate,
+  //     endDate: this.endDate,
+  //     numberofTour: this.numberofTour,
+  //   };
+
+  //   this.ToursService.getOne(tourId).subscribe(tourToAdd => {
+  //     if (tourToAdd) {
+  //       // Kiểm tra và lấy dữ liệu hiện có trong localStorage cho cả tours và dataTours
+  //       const localStorageData = JSON.parse(localStorage.getItem('cart') || '{}');
+  //       let tours: any[] = localStorageData.tours || [];
+  //       let dataTours: any[] = localStorageData.dataTours || [];
+
+  //       // Thêm tour mới vào mảng tours và dataTour vào mảng dataTours
+  //       tours.push(tourToAdd);
+  //       dataTours.push(dataTour);
+
+  //       // Lưu lại cả hai mảng trong localStorage dưới key 'cart'
+  //       localStorage.setItem('cart', JSON.stringify({ tours, dataTours }));
+  //     }
+  //   });
+
+  //   this.router.navigate(['/cart']);
+  // }
+
   getTours() {
-    this.ToursService.getOne(this.id).subscribe(data => {
+    this.TourService.getOne(this.id).subscribe(tourToAdd => {
       this.isLoading = false;
-      this.tour = data as Tours;
-      this.ToursService.getSuggest(this.tour.category.categoryId, this.tour.tourId).subscribe(data => {
-        this.tours = data as Tours[];
+      this.tour = tourToAdd as Tour;
+      this.TourService.getSuggest(this.tour.category.categoryId, this.tour.tourId).subscribe(data => {
+        this.tours = data as Tour[];
         console.log("asdasd");
       })
       console.log("asdasd");
@@ -114,9 +195,9 @@ export class ToursDetailComponent implements OnInit {
   }
 
   getRates() {
-    this.rateService.getByTours(this.id).subscribe(data=>{
+    this.rateService.getByTours(this.id).subscribe(data => {
       this.rates = data as Rate[];
-    }, error=>{
+    }, error => {
       this.toastr.error('Lỗi hệ thống!', 'Hệ thống');
     })
   }
@@ -131,12 +212,12 @@ export class ToursDetailComponent implements OnInit {
     let avgRating: number = 0;
     this.countRate = 0;
     for (const item of this.rateAll) {
-      if (item.tours.tourId === id) {
+      if (item.tour.tourId === id) {
         avgRating += item.rating;
         this.countRate++;
       }
     }
-    return this.countRate==0 ? 0 : Math.round(avgRating/this.countRate * 10) / 10;
+    return this.countRate == 0 ? 0 : Math.round(avgRating / this.countRate * 10) / 10;
   }
 
   toggleLike(id: number) {
@@ -150,7 +231,7 @@ export class ToursDetailComponent implements OnInit {
       if (data == null) {
         this.customerService.getByEmail(email).subscribe(data => {
           this.customer = data as Customer;
-          this.favoriteService.post(new Favorites(0, new Customer(this.customer.userId), new Tours(id))).subscribe(data => {
+          this.favoriteService.post(new Favorites(0, new Customer(this.customer.userId), new Tour(id))).subscribe(data => {
             this.toastr.success('Thêm thành công!', 'Hệ thống');
             this.favoriteService.getByEmail(email).subscribe(data => {
               this.favorites = data as Favorites[];
@@ -196,7 +277,7 @@ export class ToursDetailComponent implements OnInit {
     }
     this.cartService.getCart(email).subscribe(data => {
       this.cart = data as Cart;
-      this.cartDetail = new CartDetail(0,1, price, new Tours(tourId), new Cart(this.cart.cartId));
+      this.cartDetail = new CartDetail(0, 1, price, new Tour(tourId), new Cart(this.cart.cartId));
       this.cartService.postDetail(this.cartDetail).subscribe(data => {
         this.toastr.success('Thêm vào giỏ hàng thành công!', 'Hệ thống!');
         this.cartService.getAllDetail(this.cart.cartId).subscribe(data => {
